@@ -1,8 +1,17 @@
-import './product-listing.css';
-import { Navbar } from "../Navbar/Navbar";
+import './style.css';
+import axios  from 'axios';
 
+const getProduct = async () => {
+    try{
+        const response = await axios.get('/api/products');
+    }catch(error){
+        console.log(error);
+    }
+    return response;
+}
 
 const ProductListing = () => {
+const products = getProduct();
     return (
         <>
             {/* <Navbar /> */}
@@ -160,7 +169,7 @@ const ProductListing = () => {
                                     <div className="card-price">
                                         <span className="product-discounted-price">Rs. 650</span>
                                         {/* <span className="product-original-price">Rs. 2999</span>
-                            <span className="product-discount">(20% OFF)</span> */}
+                                        <span className="product-discount">(20% OFF)</span> */}
                                     </div>
                                     <button className="bttn bttn-primary">
                                         <span className="bttn-icon"

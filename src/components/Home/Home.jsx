@@ -1,8 +1,9 @@
 import './home.css';
 import {
-    LowMaintainanceCateogry,
-    IndoorCateogry,
-    AirPurifierCateogry
+    LowMaintainanceCategory,
+    IndoorCategory,
+    AirPurifierCategory,
+    HeroImage
   } from "../../assets/index";
 
 export const Home = () => {
@@ -21,7 +22,7 @@ export const Home = () => {
                     <picture>
                         <img
                             className="home-page-banner responsive-img"
-                            src="https://media.ugaoo.com/wysiwyg/indoor-plants-webjuly.jpg"
+                            src={HeroImage}
                             alt="plants"
                         />
                     </picture>
@@ -38,7 +39,7 @@ export const Home = () => {
                             <div>
                                 <img
                                     className="responsive-img homepage-feature-img"
-                                    src={LowMaintainanceCateogry}
+                                    src={LowMaintainanceCategory}
                                 />
                             </div>
                             <p>Indoor Plant</p>
@@ -49,7 +50,7 @@ export const Home = () => {
                             <div>
                                 <img
                                     className="responsive-img homepage-feature-img"
-                                    src={IndoorCateogry}
+                                    src={IndoorCategory}
                                 />
                             </div>
                             <p>Air Purifying</p>
@@ -60,7 +61,7 @@ export const Home = () => {
                             <div>
                                 <img
                                     className="responsive-img homepage-feature-img"
-                                    src={AirPurifierCateogry}
+                                    src={AirPurifierCategory}
                                 />
                             </div>
                             <p>Low Maintainance</p>

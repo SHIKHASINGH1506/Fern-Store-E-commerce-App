@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans&family=Nunito:ital,wght@0,300;1,300&family=Playfair+Display:wght@700;800&family=Poppins:wght@200;300;400&family=Public+Sans:wght@200&display=swap');
 @import url('https://kube-ui.netlify.app/Components/kube-ui.css');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css');
+@import url('https://unpkg.com/mockman-js@latest/dist/style.css'); 
 
 html {
     scroll-behavior: smooth;
