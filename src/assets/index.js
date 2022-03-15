@@ -1,11 +1,11 @@
-import LowMaintainanceCateogry from "./images/LowMaintainance-Cateogry.jpeg";
-import IndoorCateogry from "./images/IndoorCateogry.jpeg";
-import AirPurifierCateogry from "./images/AirPurifier-Cateogry.jpeg";
+import LowMaintainanceCategory from "./images/LowMaintainance-Category.jpeg";
+import IndoorCategory from "./images/IndoorCategory.jpeg";
+import AirPurifierCategory from "./images/AirPurifier-Category.jpeg";
 import HeroImage from "./images/hero-img.jpg";
  
 export {
-    LowMaintainanceCateogry,
-    IndoorCateogry,
-    AirPurifierCateogry,
+    LowMaintainanceCategory,
+    IndoorCategory,
+    AirPurifierCategory,
     HeroImage
 }
