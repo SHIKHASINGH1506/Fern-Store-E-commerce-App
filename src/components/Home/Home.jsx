@@ -2,7 +2,8 @@ import './home.css';
 import {
     LowMaintainanceCateogry,
     IndoorCateogry,
-    AirPurifierCateogry
+    AirPurifierCateogry,
+    HeroImage
   } from "../../assets/index";
 
 export const Home = () => {
@@ -21,7 +22,7 @@ export const Home = () => {
                     <picture>
                         <img
                             className="home-page-banner responsive-img"
-                            src="https://media.ugaoo.com/wysiwyg/indoor-plants-webjuly.jpg"
+                            src={HeroImage}
                             alt="plants"
                         />
                     </picture>
