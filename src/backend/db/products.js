@@ -1,43 +1,62 @@
 import { v4 as uuid } from "uuid";
-
-/**
- * Product Database can be added here.
- * You can add products of your wish with different attributes
- * */
+import {
+  ArecaPalm,
+  Alovera,
+  BetelLeaf,
+  CalatheaFreddie,
+  Leafy,
+  MoneyPlant,
+  RubberPlant,
+  FiddleLeaf,
+  SnakePlant,
+  JadePlant,
+  ChineseMoneyPlant,
+  ZZ
+} from '../../assets/index'; 
 
 export const products = [
   {
     _id: uuid(),
     title: "Betel Leaf Plant(Magai Paan)",
+    rating: 4,
     price: "299",
+    img: {BetelLeaf},
     discountedPrice: "250",
     categoryName: "indoor",
   },
   {
     _id: uuid(),
     title: "Calathea Freddie",
+    rating: 5,
     price: "499",
+    img: {CalatheaFreddie},
     discountedPrice: "470",
     categoryName: "indoor",
   },
   {
     _id: uuid(),
     title: "Leafy Plant",
+    rating: 3,
     price: "399",
+    img: {Leafy},
     discountedPrice: "270",
     categoryName: "indoor",
   },
   {
     _id: uuid(),
     title: "ZZ Plant - Medium",
+    rating: 4,
     price: "599",
+    img: {ZZ},
     discountedPrice: "500",
     categoryName: "airPurifier",
   },
   {
     _id: uuid(),
     title: "Money Plant",
+    rating: 3,
     price: "299",
+    img: {MoneyPlant},
     discountedPrice: "270",
     categoryName: "airPurifier",
   },
@@ -45,52 +64,65 @@ export const products = [
   {
     _id: uuid(),
     title: "Rubber Plant",
+    rating: 4,
     price: "699",
+    img: {RubberPlant},
     discountedPrice: "680",
     categoryName: "airPurifier",
   },
   {
     _id: uuid(),
     title: "Fiddle Leaf Fig Plant",
+    rating: 5,
     price: "1299",
+    img: {FiddleLeaf},
     discountedPrice: "1299",
     categoryName: "lowMaintenance",
   },
   {
     _id: uuid(),
     title: "Aloe Blizzard Plant",
+    rating: 3,
     price: "399",
+    img: {Alovera},
     discountedPrice: "380",
     categoryName: "lowMaintenance",
   },
   {
     _id: uuid(),
     title: "Snake Plant",
+    rating: 4,
     price: "599",
+    img: {SnakePlant},
     discountedPrice: "550",
     categoryName: "lowMaintenance",
   },
   {
     _id: uuid(),
     title: "Jade Plant",
+    rating: 4,
     price: "450",
+    img: {JadePlant},
     discountedPrice: "400",
     categoryName: "lowMaintenance",
   },
   {
     _id: uuid(),
     title: "Chinese Money Plant",
+    rating: 3,
     price: "320",
+    img: {ChineseMoneyPlant},
     discountedPrice: "300",
     categoryName: "indoor",
   },
   {
     _id: uuid(),
     title: "Areca Palm Plant",
+    rating: 5,
     price: "690",
+    img: {ArecaPalm},
     discountedPrice: "670",
     categoryName: "indoor",
   },
-
   
 ];
