@@ -1,16 +1,13 @@
-import {useFilter} from '../../../contexts/filterContext';
-
+import './productCard.css';
 const ProductCard = ({product}) => {
-    const {
-        _id, 
+    const { 
         title,
         productType, 
         rating, 
         price, 
         discountedPrice,
         img, 
-        discountPercentage,
-        categoryName
+        discountPercentage
     } = product;
     return (
         <div className="card-vertical">

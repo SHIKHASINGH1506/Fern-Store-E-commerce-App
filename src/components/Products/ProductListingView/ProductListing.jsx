@@ -1,4 +1,4 @@
-import '../style.css';
+import './productListing.css';
 import {useFilter} from '../../../contexts/filterContext';
 import {SidebarFilter} from '../SidebarFilterView/SidebarFilter';
 import { ProductCard } from '../ProductCardView/ProductCard';

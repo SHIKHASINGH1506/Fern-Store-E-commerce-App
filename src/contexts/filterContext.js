@@ -22,16 +22,25 @@ const FilterContextProvider = ({ children }) => {
                   type: "INIT_CATEGORIES", 
                   payload: categories
                 });
-                const {data : {products}} = await axios.get('/api/products');
-                dispatch({
-                  type: "INIT_PRODUCTS", 
-                  payload: products
-                });
             }catch(error)
             {
               console.log(error);
             }
         })();
+    }, []);
+
+    useEffect(() => {
+      (async () => {
+        try{
+          const {data : {products}} = await axios.get('/api/products');
+          dispatch({
+            type: "INIT_PRODUCTS", 
+            payload: products
+          });
+        }catch(error){
+          console.log(error);
+        }
+      })();
     }, []);
 
   return (

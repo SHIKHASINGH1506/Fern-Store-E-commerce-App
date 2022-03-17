@@ -1,4 +1,4 @@
-import '../style.css';
+import './sidebarFilter.css';
 import {useFilter} from "../../../contexts/filterContext";
 
 const SidebarFilter = () => {
@@ -11,17 +11,17 @@ const SidebarFilter = () => {
         filterType === 'CATEOGRY' 
             ? { [filterValue]: e.target.checked }
             : filterValue;
-        dispatch({type : type, payload: payload});
+        dispatch({type : type, payload: payload}); 
     }
     return (
         <div className="product-sidebar mr-6">
-            <aside className="side-navbar px-4">
+            <aside className="side-navbar">
                 <header className="nav-header py-4">
                     <div className="px-4 bold">Filters</div>
                     <a href="" className="link-text-primary px-6"
                     onClick = {() => changeHandler("CLEAR", products)}>clear</a>
                 </header>
-                <div className="drawer-menu">
+                <div className="side-navbar">
                     <div className="price-filter">
                         <div className="list-title px-4 my-2 bold">Price</div>
                         <div className="slider px-4">
@@ -68,19 +68,19 @@ const SidebarFilter = () => {
                     <div className="category-filter">
                         <div className="list-title px-4 my-2 bold">Cateogry</div>
                         <div className="checklist">
-                            {Object.entries(categories).map(item =>{
-                                const [cateogryName, isChecked] = item;
+                            {Object.entries(categories).map(item =>{ 
+                                const [categoryName, isChecked] = item;
                                 return(
-                                    <label key={item._id} className="list-item" for={cateogryName}>
+                                    <label key={item._id} className="list-item" for={categoryName}>
                                     <input
                                         className="mr-4"
                                         type="checkbox"
-                                        id={cateogryName}
-                                        name={cateogryName}
+                                        id={categoryName}
+                                        name={categoryName}
                                         checked={isChecked}
-                                        onChange={(e) => changeHandler("CATEOGRY", cateogryName, e)}
+                                        onChange={(e) => changeHandler("CATEOGRY", categoryName, e)}
                                     />
-                                    {cateogryName}
+                                    {categoryName}
                                 </label>
                                 )
                             })}

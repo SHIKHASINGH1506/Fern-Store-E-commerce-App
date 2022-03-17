@@ -1,22 +1,23 @@
 export const filterReducer = (state, action) => {
-  switch (action.type) {
+  const {type, payload} = action;
+  const {categories} = state;
+  switch (type) {
     case "INIT_CATEGORIES": {
-      const obj = action.payload.reduce(
-        (prev, current) => ({ 
-          ...prev, 
-          [current.categoryName]: false 
-        }), 
-        {}
-      );
       return {
         ...state,
-        cateogries: obj
-      };
-    }
+        categories: payload.reduce(
+          (prev, current) => ({ 
+            ...prev, 
+            [current.categoryName]: false 
+          }), 
+          {}
+        )
+      }
+    };
     case 'INIT_PRODUCTS': {
       return{
         ...state,
-        products: action.payload
+        products: payload
       }
     }
     case 'LOW_TO_HIGH':
@@ -31,30 +32,30 @@ export const filterReducer = (state, action) => {
       return  {
         ...state,
         categories: { 
-          ...state.categories, 
-          ...action.payload 
+          ...categories, 
+          ...payload 
         }
       };
     case 'STAR_RATING':
       return{
         ...state,
-        starRating: action.payload
+        starRating: payload
       };
     case 'PRICE':
       return { 
         ...state, 
-        priceRange: action.payload 
+        priceRange: payload 
       };
     case 'CLEAR': 
-      for(const cat in state.categories)
-        state.categories[cat] = false;
+      for(const cat in categories)
+        categories[cat] = false;
       return {
         ...state,
         sortBy: "",
-        categories: state.categories,
+        categories: categories,
         priceRange: 1300,
         starRating: "",
-        products: action.payload
+        products: payload
       }
     default:
       return state;
