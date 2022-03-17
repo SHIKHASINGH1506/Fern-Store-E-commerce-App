@@ -10,7 +10,7 @@ const Wishlist = () => {
                         <div className="card-image-container">
                             <img
                                 className="responsive-img"
-                                src={require('../../assets/images/Fiddle-leaf.jpg')}
+                                // src={require('../../assets/images/Fiddle-leaf.jpg')}
                                 alt="model"
                             />
 
