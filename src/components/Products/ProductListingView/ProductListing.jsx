@@ -9,7 +9,7 @@ import {
     getDatainStarRatingRange
   } from '../../../utils/sortAndFilter/index';
 
-
+ 
 const ProductListing = () => {
 
 const {state : {sortBy, categories, priceRange, products, starRating}} = useFilter();

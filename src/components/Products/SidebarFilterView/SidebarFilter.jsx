@@ -9,7 +9,7 @@ const SidebarFilter = () => {
         const type = filterType;
         const payload = 
         filterType === 'CATEOGRY' 
-            ? { [filterValue]: e.target.checked }
+            ? { cateogry: {[filterValue.categoryName]: e.target.checked }, id: filterValue.id}
             : filterValue;
         dispatch({type : type, payload: payload}); 
     }
@@ -67,8 +67,13 @@ const SidebarFilter = () => {
                     <div className="category-filter">
                         <div className="list-title px-4 my-2 bold">Cateogry</div>
                         <div className="checklist">
-                            {Object.entries(categories).map(item =>{ 
-                                const [categoryName, isChecked] = item;
+                            {categories.map(item => {
+                                let categoryName='';
+                                let isChecked = false; 
+                                for(const c in item.selectedCategory){
+                                    categoryName = c;
+                                    isChecked = item.selectedCategory[c];
+                                }
                                 return(
                                     <label key={item._id} className="list-item" for={categoryName}>
                                     <input
@@ -77,7 +82,7 @@ const SidebarFilter = () => {
                                         id={categoryName}
                                         name={categoryName}
                                         checked={isChecked}
-                                        onChange={(e) => changeHandler("CATEOGRY", categoryName, e)}
+                                        onChange={(e) => changeHandler("CATEOGRY", {categoryName: categoryName, id: item._id}, e)}
                                     />
                                     {categoryName}
                                 </label>

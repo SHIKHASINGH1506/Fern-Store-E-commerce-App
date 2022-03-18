@@ -6,7 +6,7 @@ const FilterContext = createContext();
 const useFilter = () => useContext(FilterContext);
 const initialState =  {
     sortBy: "",
-    categories: {},
+    categories: [],
     priceRange: 600,
     starRating: "",
     products:[]

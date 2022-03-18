@@ -6,12 +6,11 @@ export const filterReducer = (state, action) => {
       return {
         ...state,
         categories: payload.reduce(
-          (prev, current) => ({ 
+          (prev, current) => [
             ...prev, 
-            [current.categoryName]: false 
-          }), 
-          {}
-        )
+            {...current, selectedCategory : { [current.categoryName] : false}}
+          ],
+          []),
       }
     };
     case 'INIT_PRODUCTS': {
@@ -29,12 +28,22 @@ export const filterReducer = (state, action) => {
         ...state, 
         sortBy: "hightoLow" };
     case 'CATEOGRY':
-      return  {
+      return {
         ...state,
-        categories: { 
-          ...categories, 
-          ...payload 
-        }
+        categories: categories.map(category => {
+          if(category._id === payload.id){
+            return {
+              ...category,
+              selectedCategory: {
+                ...category.selectedCategory,
+                ...payload.cateogry
+              }
+            }
+          }
+          return{
+            ...category
+          };
+        })
       };
     case 'STAR_RATING':
       return{
