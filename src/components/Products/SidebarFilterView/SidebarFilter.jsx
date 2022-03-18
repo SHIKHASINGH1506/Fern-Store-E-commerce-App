@@ -3,7 +3,7 @@ import {useFilter} from "../../../contexts/filterContext";
 
 const SidebarFilter = () => {
     const { state: {categories, priceRange, products}, dispatch }  = useFilter();
-    const stars = [1,2,3,4];
+    const stars = [4,3,2];
 
     const changeHandler = (filterType, filterValue, e) => {
         const type = filterType;
@@ -40,7 +40,6 @@ const SidebarFilter = () => {
                                 min="300" 
                                 max="1299"
                                 value={priceRange}
-                                // step='300'
                                 onChange={(e) =>  changeHandler('PRICE', e.target.value)}
                             />
                             </div>
@@ -49,7 +48,7 @@ const SidebarFilter = () => {
                     <div className="rating-filter">
                         <div className="list-title px-4 my-2 bold">Rating</div>
                         <div className="checklist">
-                            {stars.reverse().map(star => {
+                            {stars.map(star => {
                                 return(
                                     <label className="list-item" for={`rating${star}`} key={star}>
                                     <input

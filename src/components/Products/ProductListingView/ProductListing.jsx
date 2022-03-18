@@ -1,7 +1,7 @@
 import './productListing.css';
 import {useFilter} from '../../../contexts/filterContext';
 import {SidebarFilter} from '../SidebarFilterView/SidebarFilter';
-import { ProductCard } from '../ProductCardView/ProductCard';
+import {ProductCard} from '../ProductCardView/ProductCard';
 import {
     getSortedData,
     getProductsInPriceRange,
