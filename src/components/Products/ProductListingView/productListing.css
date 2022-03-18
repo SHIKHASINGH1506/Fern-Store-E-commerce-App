@@ -4,26 +4,8 @@
   }
   .product-page {
     display: flex;
-    margin-top: 1rem;
-  }
-  .product-sidebar {
-    overflow-y: auto;
-    height: calc(100vh - 63px);
-    min-width: 16rem;
-  }
-  .side-navbar {
-    display: flex;
-    flex-direction: column;
-  }
-  .nav-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0;
-  }
-  .drawer-menu {
-    display: flex;
-    flex-direction: column;
+    margin-top: 0.5rem;
+    gap: 1rem;
   }
   .list-item {
     padding: 0 1rem;
@@ -43,17 +25,16 @@
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 2rem;
   }
-  .card-vertical{
-    background-color: transparent;
-    margin-bottom: 2rem;
+  datalist {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-top: 0px;
   }
-  .card-image-container {
-    max-height: 15.625rem;
+  .rangeInput{
+    display: flex;
+    width: 100%;
   }
-  .card-content-container {
-    padding: 0;
-  }
-  
   /* media query */
   @media screen and (max-width: 640px) {
     .product-sidebar {

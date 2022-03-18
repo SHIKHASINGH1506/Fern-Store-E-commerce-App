@@ -1,12 +1,14 @@
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import {Home} from "./components/Home/Home";
-import {Navbar} from "./components/Navbar/Navbar";
-import { ProductListing } from "./components/Products/ProductListing";
-import {Login} from "./components/Auth/Login/Login";
-import{Signup} from "./components/Auth/Signup/Signup";
-import {Cart} from "./components/Cart/Cart";
-import {Wishlist} from "./components/Wishlist/Wishlist";
+import {
+  Home,
+  Navbar,
+  ProductListing,
+  Login,
+  Signup,
+  Cart,
+  Wishlist
+} from "./components/index";
 import Mockman from 'mockman-js';
 
 function App() {
