@@ -1,7 +1,12 @@
-import { Link } from 'react-router-dom';
 import '../Navbar/navbar.css';
+import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/authContext";
+
 
 const Navbar = () => {
+    const navigate = useNavigate();
+    const {state: {payload: {token}}} = useAuth();
     return (
         <header className="navbar-home">
             <nav className="navbar-wrapper">
@@ -41,34 +46,30 @@ const Navbar = () => {
                         />
                     </div>
                     <ul className="navbar-nav navbar-fixed">
+                       
+                        <li className="nav-item">
+                                <span className="nav-icon-link no-link-style"
+                                onClick={() => token
+                                    ? navigate('/Cart')
+                                    : navigate('Login')}
+                                >
+                                    <i className="fas fa-shopping-bag"></i>
+                                </span>
+                        </li>
+                        <li className="nav-item">
+                                <span className="nav-icon-link no-link-style"
+                                onClick={() => token
+                                    ? navigate('/Wishlist')
+                                    : navigate('Login')}
+                                >   
+                                    <i className="fas fa-heart"></i>
+                                </span>
+                        </li>
                         <li className="nav-item">
                             <Link to='/Login' className='nav-item-link'>LOGIN</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to='/Cart' className='nav-item-link'>
-                                <span className="nav-icon">
-                                    <i className="fas fa-shopping-bag"></i>
-                                </span>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            {/* <a
-                                className="nav-icon-link no-link-style"
-                                href="./Components/Wishlist/wishlist.html"
-                            > */}
-                            <Link to='/Wishlist' className='nav-item-link'>
-                                <span className="nav-icon">
-                                    <i className="fas fa-heart"></i>
-                                </span>
-                            </Link>
-                            {/* </a> */}
-                        </li>
-                        <li className="nav-item">
-                            <a
-                                className="nav-icon-link no-link-style"
-                                href="#">
-                                LOGOUT
-                            </a>
+                            <Link to='/Login' className='nav-item-link'>LOGOUT</Link>
                         </li>
                     </ul>
                 </div>
