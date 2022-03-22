@@ -29,10 +29,10 @@ useEffect(() => {
     })();
     }, []);
 
-const sortedProducts = getSortedData(products, sortBy);
-const productsInPriceRange = getProductsInPriceRange(sortedProducts, priceRange);
-const productsInStarRating = getDatainStarRatingRange(productsInPriceRange, starRating);
-const filteredProducts = getCateogrisedProducts(productsInStarRating, categories);
+const categorisedProducts = getCateogrisedProducts(products, categories);
+const productsInStarRating = getDatainStarRatingRange(categorisedProducts, starRating);
+const productsInPriceRange = getProductsInPriceRange(productsInStarRating, priceRange);
+const filteredProducts = getSortedData(productsInPriceRange, sortBy);
     return (
         <>
             <div className="general-wrapper">
