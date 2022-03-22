@@ -29,20 +29,6 @@ const FilterContextProvider = ({ children }) => {
         })();
     }, []);
 
-    useEffect(() => {
-      (async () => {
-        try{
-          const {data : {products}} = await axios.get('/api/products');
-          dispatch({
-            type: "INIT_PRODUCTS", 
-            payload: products
-          });
-        }catch(error){
-          console.log(error);
-        }
-      })();
-    }, []);
-
   return (
     <FilterContext.Provider value={{ state, dispatch }}>
       {children}

@@ -1,12 +1,17 @@
 import './home.css';
-import {
-    LowMaintainanceCategory,
-    IndoorCategory,
-    AirPurifierCategory,
-    HeroImage
-  } from "../../assets/index";
+import {useEffect, useState} from "react";
+import axios from 'axios';
+import {HeroImage} from "../../assets/index";
 
 export const Home = () => {
+const [categories, setCateogries] = useState([]);
+useEffect(() => {
+    (async() => {
+      const {data: {categories}} = await axios.get('/api/categories');
+      setCateogries(() => categories);
+    })();
+}, []);
+
     return (
         <div className="landing-page-layout">
             <div className="hero-img-wrapper">
@@ -34,39 +39,22 @@ export const Home = () => {
                     <h4 className="homepage-feature-title">Featured Cateogry</h4>
                 </header>
                 <div className="asideSection">
-                    <div className="feature-box">
-                        <a href="">
-                            <div>
-                                <img
-                                    className="responsive-img homepage-feature-img"
-                                    src={LowMaintainanceCategory}
-                                />
+                    {categories.map( ({_id, img, categoryName}) => {
+                        return(
+                            <div className="feature-box" key={_id}>
+                                <a href="/Products">
+                                    <div>
+                                        <img
+                                            className="responsive-img homepage-feature-img"
+                                            src={img}
+                                            alt={categoryName}
+                                        />
+                                    </div>
+                                    <p>{categoryName}</p>
+                                </a>
                             </div>
-                            <p>Indoor Plant</p>
-                        </a>
-                    </div>
-                    <div className="feature-box">
-                        <a href="">
-                            <div>
-                                <img
-                                    className="responsive-img homepage-feature-img"
-                                    src={IndoorCategory}
-                                />
-                            </div>
-                            <p>Air Purifying</p>
-                        </a>
-                    </div>
-                    <div className="feature-box">
-                        <a href="">
-                            <div>
-                                <img
-                                    className="responsive-img homepage-feature-img"
-                                    src={AirPurifierCategory}
-                                />
-                            </div>
-                            <p>Low Maintainance</p>
-                        </a>
-                    </div>
+                        );
+                    })}
                 </div>
             </div>
         </div>

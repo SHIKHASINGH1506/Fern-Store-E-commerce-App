@@ -28,8 +28,6 @@ const SidebarFilter = () => {
                             <div className="range">
                             <datalist id="tickmarks">
                                 <option value="300" label="300"></option>
-                                <option value="600" label="600"></option>
-                                <option value="900" label="900"></option>
                                 <option value="1200" label="1200"></option>
                             </datalist>
                             <input 
@@ -70,7 +68,7 @@ const SidebarFilter = () => {
                             {Object.entries(categories).map(item =>{ 
                                 const [categoryName, isChecked] = item;
                                 return(
-                                    <label key={item._id} className="list-item" for={categoryName}>
+                                    <label key={categoryName} className="list-item" for={categoryName}>
                                     <input
                                         className="mr-4"
                                         type="checkbox"

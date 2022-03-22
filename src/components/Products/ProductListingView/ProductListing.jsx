@@ -1,4 +1,6 @@
 import './productListing.css';
+import {useEffect} from "react";
+import axios from "axios";
 import {useFilter} from '../../../contexts/filterContext';
 import {SidebarFilter} from '../SidebarFilterView/SidebarFilter';
 import {ProductCard} from '../ProductCardView/ProductCard';
@@ -11,8 +13,22 @@ import {
 
 
 const ProductListing = () => {
+const {state : {sortBy, categories, priceRange, products, starRating}, dispatch} = useFilter();
 
-const {state : {sortBy, categories, priceRange, products, starRating}} = useFilter();
+useEffect(() => {
+    (async () => {
+        try{
+        const {data : {products}} = await axios.get('/api/products');
+        dispatch({
+            type: "INIT_PRODUCTS", 
+            payload: products
+        });
+        }catch(error){
+        console.log(error);
+        }
+    })();
+    }, []);
+
 const sortedProducts = getSortedData(products, sortBy);
 const productsInPriceRange = getProductsInPriceRange(sortedProducts, priceRange);
 const productsInStarRating = getDatainStarRatingRange(productsInPriceRange, starRating);
