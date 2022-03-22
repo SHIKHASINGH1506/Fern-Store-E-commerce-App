@@ -35,8 +35,8 @@ const Login = () => {
         }
         if(status===500)
             throw new Error("Internal server error!");
-        navigate('/Products');
         dispatch({ type: "login", payload:{token: encodedToken, user: foundUser} });
+        navigate('/');
         }catch(error){
             console.error(e);
         }
@@ -55,8 +55,8 @@ const Login = () => {
             }
             if(status===500)
                 throw new Error("Internal server error!");
-            navigate('/Products');
             dispatch({ type: "login", payload:{token: encodedToken, user: foundUser} });
+            navigate('/');
         } catch (e) {
             console.error(e);
         }
