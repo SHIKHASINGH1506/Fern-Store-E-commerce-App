@@ -1,9 +1,9 @@
 import { updateCartItem, deleteCartItem } from '../../../services/index';
-import { useFilter } from '../../../contexts/index';
+import { useProduct } from '../../../contexts/index';
 import { useAuth } from '../../../contexts/index';
 
 const CartItem = () => {
-  const {state:{cart}, dispatch} = useFilter();
+  const {state:{cart}, dispatch} = useProduct();
   const {state: {payload: {token}}} = useAuth(); 
 
   const updateCartItemHandler = (id, data) => {

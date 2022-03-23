@@ -1,4 +1,4 @@
-export const filterReducer = (state, action) => {
+export const productReducer = (state, action) => {
   const {type, payload} = action;
   const {categories} = state;
   switch (type) {

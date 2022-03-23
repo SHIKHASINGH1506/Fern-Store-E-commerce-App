@@ -1,13 +1,13 @@
 import '../Navbar/navbar.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import { useAuth, useFilter } from "../../contexts/index";
+import { useAuth, useProduct } from "../../contexts/index";
 
 
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const {state: {cart}} = useFilter();
+    const {state: {cart}} = useProduct();
     const { state: { payload: { token } } } = useAuth();
     return (
         <header className="navbar-home">

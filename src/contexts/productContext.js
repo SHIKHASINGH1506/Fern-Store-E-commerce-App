@@ -1,19 +1,20 @@
 import axios from "axios";
 import { createContext, useContext, useReducer, useEffect } from "react";
-import { filterReducer } from '../reducers/filterReducer';
+import { productReducer } from '../reducers/productReducer';
 
-const FilterContext = createContext();
-const useFilter = () => useContext(FilterContext);
+const ProductContext = createContext();
+const useProduct = () => useContext(ProductContext);
 const initialState =  {
     sortBy: "",
     categories: {},
     priceRange: 600,
     starRating: "",
     cart: [],
+    wishlist: [],
     products:[]
   };
-const FilterContextProvider = ({ children }) => {
-    const [state, dispatch] = useReducer(filterReducer, initialState);
+const ProductContextProvider = ({ children }) => {
+    const [state, dispatch] = useReducer(productReducer, initialState);
 
     useEffect(() => {
         (async () => {
@@ -31,10 +32,10 @@ const FilterContextProvider = ({ children }) => {
     }, []);
 
   return (
-    <FilterContext.Provider value={{ state, dispatch }}>
+    <ProductContext.Provider value={{ state, dispatch }}>
       {children}
-    </FilterContext.Provider>
+    </ProductContext.Provider>
   );
 };
 
-export { FilterContextProvider, useFilter };
+export { ProductContextProvider, useProduct };

@@ -1,10 +1,10 @@
 import './cart.css';
-import { useFilter } from '../../../contexts/index';
+import { useProduct } from '../../../contexts/index';
 import { CartItem } from "../CartItemView/CartItem";
 import { OrderDetail } from "../OrderDetailsView/OrderDetail";
 
 const Cart = () => {
-  const {state: {cart}} = useFilter();
+  const {state: {cart}} = useProduct();
 
   return (
     <div className="general-wrapper">

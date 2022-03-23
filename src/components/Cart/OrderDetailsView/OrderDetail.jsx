@@ -1,8 +1,8 @@
-import { useFilter } from '../../../contexts/index';
+import { useProduct } from '../../../contexts/index';
 import { getPriceDetails } from "../../../utils/cart/cart";
 
 const OrderDetail = () => {
-  const {state: {cart}} = useFilter();
+  const {state: {cart}} = useProduct();
   const {totalPrice, priceAfterDiscount, totalDiscount} = getPriceDetails(cart);
   return (
     <aside className="item-price-card">

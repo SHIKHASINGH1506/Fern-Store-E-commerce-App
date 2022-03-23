@@ -1,5 +1,5 @@
 import './productCard.css';
-import { useFilter } from "../../../contexts/index";
+import { useProduct } from "../../../contexts/index";
 import { addProductToCart } from "../../../services/index";
 import { useAuth } from '../../../contexts/index'; 
 import { isItemInCart } from "../../../utils/cart/cart";
@@ -17,7 +17,7 @@ const ProductCard = ({product}) => {
         discountPercentage
     } = product;
     const navigate = useNavigate();
-    const{state: {cart}, dispatch} = useFilter(); 
+    const{state: {cart}, dispatch} = useProduct(); 
     const {state: {payload: {token}}} = useAuth(); 
     const isProductInCart = isItemInCart(cart, _id);
 
