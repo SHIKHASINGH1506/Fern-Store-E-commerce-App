@@ -46,6 +46,11 @@ export const filterReducer = (state, action) => {
         ...state, 
         priceRange: payload 
       };
+    case 'UPDATE_CART': 
+      return {
+        ...state,
+        cart: [...action.payload]
+      }
     case 'CLEAR': 
       for(const cat in categories)
         categories[cat] = false;

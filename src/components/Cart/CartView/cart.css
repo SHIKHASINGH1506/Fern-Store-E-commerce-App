@@ -81,6 +81,10 @@
     font-size: 0.875rem;
     color: var(--dark-secondary-text-color);
   }
+  .icon-btn{
+    background: transparent;
+    color: var(--primary-color);
+  }
   /* media query */
   @media only screen and (max-width: 768px) {
     html {

@@ -1,6 +1,13 @@
 import './productCard.css';
+import { useFilter } from "../../../contexts/index";
+import { addProductToCart } from "../../../services/index";
+import { useAuth } from '../../../contexts/index'; 
+import { isItemInCart } from "../../../utils/cart/cart";
+import { useNavigate } from 'react-router';
+
 const ProductCard = ({product}) => {
     const { 
+        _id,
         title,
         productType, 
         rating, 
@@ -9,6 +16,19 @@ const ProductCard = ({product}) => {
         img, 
         discountPercentage
     } = product;
+    const navigate = useNavigate();
+    const{state: {cart}, dispatch} = useFilter(); 
+    const {state: {payload: {token}}} = useAuth(); 
+    const isProductInCart = isItemInCart(cart, _id);
+
+    //add items to cart
+    const addToCartHandler = (products) => {
+        token 
+            ? isProductInCart
+                ? navigate('/Cart') 
+                : addProductToCart(dispatch, {product: products}, token)
+            : navigate('/Login');
+    }
     return (
         <div className="card-vertical">
             <div className="card-image-container">
@@ -31,16 +51,16 @@ const ProductCard = ({product}) => {
                 <div className="card-text"> {productType} </div>
                 <div className="card-price">
                     <span className="product-discounted-price">
-                       Rs. {discountedPrice}
+                       Rs. {discountedPrice} 
                     </span>
                     <span className="product-original-price">Rs. {price}</span>
                     <span className="product-discount">{discountPercentage}</span>
                 </div>
-                <button className="bttn bttn-primary">
+                <button className="bttn bttn-primary" onClick={() => addToCartHandler(product)}>
                     <span className="bttn-icon">
                         <i className="fas fa-shopping-bag"></i>
                     </span>
-                     Add to Cart
+                    {isProductInCart ? "View Cart" : "Add to Cart"} 
                 </button>
             </div>
         </div>

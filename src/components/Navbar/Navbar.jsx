@@ -1,12 +1,14 @@
 import '../Navbar/navbar.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../contexts/authContext";
+import { useAuth, useFilter } from "../../contexts/index";
+
 
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const {state: {payload: {token}}} = useAuth();
+    const {state: {cart}} = useFilter();
+    const { state: { payload: { token } } } = useAuth();
     return (
         <header className="navbar-home">
             <nav className="navbar-wrapper">
@@ -46,31 +48,37 @@ const Navbar = () => {
                         />
                     </div>
                     <ul className="navbar-nav navbar-fixed">
-                       
+
                         <li className="nav-item">
-                                <span className="nav-icon-link no-link-style"
-                                onClick={() => token
-                                    ? navigate('/Cart')
-                                    : navigate('Login')}
+                            <div className="nav-icon-link no-link-style">
+                                <span className="nav-icon badge-container"
+                                    onClick={() => token
+                                        ? navigate('/Cart')
+                                        : navigate('Login')}
                                 >
                                     <i className="fas fa-shopping-bag"></i>
+                                    {cart.length>0 && <span class="btn-badge d-flex justify-center items-center">{cart.length}</span>}
                                 </span>
+                            </div>
                         </li>
                         <li className="nav-item">
-                                <span className="nav-icon-link no-link-style"
-                                onClick={() => token
-                                    ? navigate('/Wishlist')
-                                    : navigate('Login')}
-                                >   
+                            <div className="nav-icon-link no-link-style">
+                                <span className="nav-icon badge-container"
+                                    onClick={() => token
+                                        ? navigate('/Wishlist')
+                                        : navigate('Login')}
+                                >
                                     <i className="fas fa-heart"></i>
+                                    <span class="btn-badge d-flex justify-center items-center">8</span>
                                 </span>
+                            </div>
                         </li>
                         <li className="nav-item">
                             <Link to='/Login' className='nav-item-link'>LOGIN</Link>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <Link to='/Login' className='nav-item-link'>LOGOUT</Link>
-                        </li>
+                        </li> */}
                     </ul>
                 </div>
                 <div className="sidebar-wrapper" id="sidebar-wrapper">
@@ -99,4 +107,4 @@ const Navbar = () => {
     )
 }
 
-export {Navbar};
+export { Navbar };

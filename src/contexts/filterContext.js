@@ -9,6 +9,7 @@ const initialState =  {
     categories: {},
     priceRange: 600,
     starRating: "",
+    cart: [],
     products:[]
   };
 const FilterContextProvider = ({ children }) => {
