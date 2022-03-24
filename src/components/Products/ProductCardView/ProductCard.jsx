@@ -1,8 +1,9 @@
 import './productCard.css';
 import { useProduct } from "../../../contexts/index";
-import { addProductToCart } from "../../../services/index";
+import { addProductToCart, addProductToWishlist, deleteProductFromWishlist} from "../../../services/index";
 import { useAuth } from '../../../contexts/index'; 
 import { isItemInCart } from "../../../utils/cart/cart";
+import { isItemnWishlist } from "../../../utils/wishlist/wishlist";
 import { useNavigate } from 'react-router';
 
 const ProductCard = ({product}) => {
@@ -17,18 +18,30 @@ const ProductCard = ({product}) => {
         discountPercentage
     } = product;
     const navigate = useNavigate();
-    const{state: {cart}, dispatch} = useProduct(); 
+    const{state: {cart, wishlist}, dispatch} = useProduct(); 
     const {state: {payload: {token}}} = useAuth(); 
+    
     const isProductInCart = isItemInCart(cart, _id);
+    const isProductInWishlist = isItemnWishlist(wishlist, _id);
 
     //add items to cart
-    const addToCartHandler = (products) => {
+    const addToCartHandler = (product) => {
         token 
             ? isProductInCart
                 ? navigate('/Cart') 
-                : addProductToCart(dispatch, {product: products}, token)
+                : addProductToCart(dispatch, {product: product}, token)
             : navigate('/Login');
     }
+
+    const addToWishlistHandler = (product) => {
+        console.log(product);
+        token 
+            ? isProductInWishlist
+                ? deleteProductFromWishlist(dispatch, _id) 
+                : addProductToWishlist(dispatch, {product: product})
+            : navigate('/Login');
+    }
+
     return (
         <div className="card-vertical">
             <div className="card-image-container">
@@ -42,8 +55,10 @@ const ProductCard = ({product}) => {
                         {rating}<i className="fas fa-star"></i>
                     </span>
                 </div>
-                <button className="bttn bttn-outline-secondary bttn-float-icon">
-                    <i className="far fa-heart"></i>
+                <button 
+                    className={`bttn bttn-outline-secondary bttn-float-icon ${isProductInWishlist ? 'wishlist-icon' : ''}`}
+                    onClick={() => addToWishlistHandler(product)}>
+                    <i className="fas fa-heart"></i>
                 </button>
             </div>
             <div className="card-content-container">

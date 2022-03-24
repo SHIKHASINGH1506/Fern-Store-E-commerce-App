@@ -51,6 +51,11 @@ export const productReducer = (state, action) => {
         ...state,
         cart: [...action.payload]
       }
+    case 'UPDATE_WISHLIST':
+      return {
+        ...state,
+        wishlist: [...action.payload]
+      }
     case 'CLEAR': 
       for(const cat in categories)
         categories[cat] = false;

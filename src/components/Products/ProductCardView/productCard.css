@@ -8,3 +8,17 @@
 .card-content-container {
   padding: 0;
 }
+.bttn-primary:hover{
+  transition: all 0.3s ease 0s;
+  background-color: var(--dark-primary-color);
+}
+.card-image-container .bttn{
+  color: #857d7d;
+  transition: all 0.3s ease 0s;
+}
+.card-image-container .bttn:hover{
+  color: var(--dark-secondary-text-color);
+}
+.card-image-container .wishlist-icon{
+  color: var(--light-danger-color);
+}

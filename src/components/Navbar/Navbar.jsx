@@ -2,12 +2,12 @@ import '../Navbar/navbar.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useAuth, useProduct } from "../../contexts/index";
-
-
+import { getTotalItemInCart } from "../../utils/cart/cart";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const {state: {cart}} = useProduct();
+    const {state: {cart, wishlist}} = useProduct();
+    const {totalItem} = getTotalItemInCart(cart);
     const { state: { payload: { token } } } = useAuth();
     return (
         <header className="navbar-home">
@@ -57,7 +57,7 @@ const Navbar = () => {
                                         : navigate('Login')}
                                 >
                                     <i className="fas fa-shopping-bag"></i>
-                                    {cart.length>0 && <span class="btn-badge d-flex justify-center items-center">{cart.length}</span>}
+                                    {cart.length>0 && <span class="btn-badge d-flex justify-center items-center">{totalItem}</span>}
                                 </span>
                             </div>
                         </li>
@@ -69,7 +69,7 @@ const Navbar = () => {
                                         : navigate('Login')}
                                 >
                                     <i className="fas fa-heart"></i>
-                                    <span class="btn-badge d-flex justify-center items-center">8</span>
+                                    {wishlist.length> 0 && <span class="btn-badge d-flex justify-center items-center">{wishlist.length}</span>}
                                 </span>
                             </div>
                         </li>

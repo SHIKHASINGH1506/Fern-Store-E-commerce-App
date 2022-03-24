@@ -1,4 +1,4 @@
-import { updateCartItem, deleteCartItem } from '../../../services/index';
+import { updateCartItem, deleteCartItem, addProductToWishlist } from '../../../services/index';
 import { useProduct } from '../../../contexts/index';
 import { useAuth } from '../../../contexts/index';
 
@@ -7,7 +7,12 @@ const CartItem = () => {
   const {state: {payload: {token}}} = useAuth(); 
 
   const updateCartItemHandler = (id, data) => {
-    updateCartItem(dispatch, id, data, token);
+    updateCartItem(dispatch, id, data);
+  }
+
+  const wishlistHandler = (product) => {
+    deleteCartItem(dispatch, product._id);
+    addProductToWishlist(dispatch, {product: product});
   }
 
   return (
@@ -25,7 +30,7 @@ const CartItem = () => {
             </div>
             <div className="card-horizontal-content-container">
               <button className="btn-close py-2" id="close-btn-alert"
-                onClick={() => deleteCartItem(dispatch, _id, token)}>
+                onClick={() => deleteCartItem(dispatch, _id)}>
                 <i className="fas fa-times" aria-hidden="true"></i>
               </button>
               <div className="text-conatiner">
@@ -52,7 +57,8 @@ const CartItem = () => {
                 </div>
               </div>
               <div className="button-container">
-                <button className="bttn bttn-outline-secondary text-sm">
+                <button className="bttn bttn-outline-secondary text-sm"
+                  onClick={() => wishlistHandler(cartItem)}>
                   Move to Wishlist
                 </button>
               </div>

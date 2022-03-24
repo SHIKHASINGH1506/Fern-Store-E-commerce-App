@@ -19,4 +19,15 @@ const getPriceDetails = (cart) => {
   );
 }
 
-export { isItemInCart, getPriceDetails };
+const getTotalItemInCart = (cart) => {
+  return cart.reduce(
+    ({totalItem}, item) => {
+      return {totalItem: totalItem+(item.qty)}
+    },
+    {
+      totalItem: 0
+    }
+  )
+}
+
+export { isItemInCart, getPriceDetails, getTotalItemInCart };
