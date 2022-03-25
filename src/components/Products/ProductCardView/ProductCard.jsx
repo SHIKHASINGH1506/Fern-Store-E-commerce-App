@@ -1,10 +1,11 @@
 import './productCard.css';
+import { useNavigate } from 'react-router';
 import { useProduct } from "../../../contexts/index";
 import { addProductToCart, addProductToWishlist, deleteProductFromWishlist} from "../../../services/index";
 import { useAuth } from '../../../contexts/index'; 
 import { isItemInCart } from "../../../utils/cart/cart";
 import { isItemnWishlist } from "../../../utils/wishlist/wishlist";
-import { useNavigate } from 'react-router';
+import { useToast } from "../../../custom-hooks/useToast";
 
 const ProductCard = ({product}) => {
     const { 
@@ -20,6 +21,7 @@ const ProductCard = ({product}) => {
     const navigate = useNavigate();
     const{state: {cart, wishlist}, dispatch} = useProduct(); 
     const {auth: {token}} = useAuth(); 
+    const {showToast} = useToast();
 
     
     const isProductInCart = isItemInCart(cart, _id);
@@ -27,11 +29,10 @@ const ProductCard = ({product}) => {
 
     //add items to cart
     const addToCartHandler = (product) => {
-        console.log(token);
         token 
             ? isProductInCart
                 ? navigate('/Cart') 
-                : addProductToCart(dispatch, {product: product})
+                : addProductToCart(dispatch, {product: product}, showToast)
             : navigate('/Login');
     }
 
@@ -39,7 +40,7 @@ const ProductCard = ({product}) => {
         token 
             ? isProductInWishlist
                 ? deleteProductFromWishlist(dispatch, _id) 
-                : addProductToWishlist(dispatch, {product: product})
+                : addProductToWishlist(dispatch, {product: product}, showToast)
             : navigate('/Login');
     }
 
