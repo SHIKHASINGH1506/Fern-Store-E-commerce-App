@@ -1,15 +1,25 @@
 import axios from 'axios';
 
 const cartBaseUrl = '/api/user/cart';
-const token = JSON.parse(localStorage.getItem("token"));
 
 const addProductToCart = async (dispatch, data) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   const Headers = {authorization: token};
-  const {data: {cart}} = await axios.post(cartBaseUrl, data, {headers: Headers});
-  dispatch({type: 'UPDATE_CART', payload: cart});
+  try{
+    const {data: {cart}, status} = await axios.post(cartBaseUrl, data, {headers: Headers});
+    if(status>=200 && status<=300)
+      dispatch({type: 'UPDATE_CART', payload: cart}); 
+    else{
+      throw new Error("Couldn't add to cart!")
+    }
+
+  }catch(error){
+    console.log(error.message);
+  }
 }
 
 const updateCartItem = async (dispatch, id, data) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   const updateCartItemQuantityUrl = '/api/user/cart/';
   const Headers = {authorization: token};
   const {data: {cart}} = await axios.post(updateCartItemQuantityUrl+id, data, {headers: Headers});
@@ -17,6 +27,7 @@ const updateCartItem = async (dispatch, id, data) => {
 }
 
 const deleteCartItem = async (dispatch, id) => {
+  const token = JSON.parse(localStorage.getItem("token"));
   const deleteCartItemBaseUrl = '/api/user/cart/';
   const Headers = {authorization: token};
   const {data: {cart}} = await axios.delete(deleteCartItemBaseUrl+id, {headers: Headers});

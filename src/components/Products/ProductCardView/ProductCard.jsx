@@ -19,22 +19,23 @@ const ProductCard = ({product}) => {
     } = product;
     const navigate = useNavigate();
     const{state: {cart, wishlist}, dispatch} = useProduct(); 
-    const {state: {payload: {token}}} = useAuth(); 
+    const {auth: {token}} = useAuth(); 
+
     
     const isProductInCart = isItemInCart(cart, _id);
     const isProductInWishlist = isItemnWishlist(wishlist, _id);
 
     //add items to cart
     const addToCartHandler = (product) => {
+        console.log(token);
         token 
             ? isProductInCart
                 ? navigate('/Cart') 
-                : addProductToCart(dispatch, {product: product}, token)
+                : addProductToCart(dispatch, {product: product})
             : navigate('/Login');
     }
 
     const addToWishlistHandler = (product) => {
-        console.log(product);
         token 
             ? isProductInWishlist
                 ? deleteProductFromWishlist(dispatch, _id) 

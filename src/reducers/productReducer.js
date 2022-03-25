@@ -56,6 +56,12 @@ export const productReducer = (state, action) => {
         ...state,
         wishlist: [...action.payload]
       }
+    case 'LOGOUT':
+      return {
+        ...state,
+        cart: [],
+        wishlist: []
+      }
     case 'CLEAR': 
       for(const cat in categories)
         categories[cat] = false;

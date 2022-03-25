@@ -6,9 +6,23 @@ import { getTotalItemInCart } from "../../utils/cart/cart";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const {state: {cart, wishlist}} = useProduct();
-    const {totalItem} = getTotalItemInCart(cart);
-    const { state: { payload: { token } } } = useAuth();
+    const {state: {cart, wishlist}, dispatch} = useProduct();
+    const { totalItem } = getTotalItemInCart(cart);
+    const { auth: {token, isAuth}, setAuth } = useAuth();
+
+    const logoutUser = () =>{
+        dispatch({
+            type:"LOGOUT"
+        });
+        setAuth({
+            token:'',
+            user:{},
+            isAuth: false
+        });
+        localStorage.clear();
+        navigate('/');
+    }
+
     return (
         <header className="navbar-home">
             <nav className="navbar-wrapper">
@@ -73,12 +87,13 @@ const Navbar = () => {
                                 </span>
                             </div>
                         </li>
-                        <li className="nav-item">
+                       {!isAuth && <li className="nav-item">
                             <Link to='/Login' className='nav-item-link'>LOGIN</Link>
+                        </li>}
+                        {isAuth && <li className="nav-item">
+                            <div onClick={() => logoutUser()} className='nav-item-link'>LOGOUT</div>
                         </li>
-                        {/* <li className="nav-item">
-                            <Link to='/Login' className='nav-item-link'>LOGOUT</Link>
-                        </li> */}
+                        }
                     </ul>
                 </div>
                 <div className="sidebar-wrapper" id="sidebar-wrapper">

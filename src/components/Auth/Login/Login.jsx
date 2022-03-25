@@ -16,7 +16,7 @@ const Login = () => {
         password: 'shikhasingh123'
     };
     const [loginCreds, setLoginCreds] = useState(initalLoginCreds);
-    const { dispatch } = useAuth();
+    const { auth, setAuth } = useAuth();
 
     const setLoginFields = (e) => {
         const { value, name } = e.target;
@@ -27,18 +27,29 @@ const Login = () => {
     const loginFormHandler = async (e, loginCreds) => {
         e.preventDefault();
         try{
-        const { data: { encodedToken, foundUser }, status } = await loginUser(loginCreds);
-        setLoginCreds(initalLoginCreds);
-        if (status === 200){
-            localStorage.setItem("token", JSON.stringify(encodedToken));
-            localStorage.setItem("User", JSON.stringify(foundUser));
-        }
-        if(status===500)
-            throw new Error("Internal server error!");
-        dispatch({ type: "login", payload:{token: encodedToken, user: foundUser} });
-        navigate('/');
+            const isLogin = await loginUser(loginCreds);
+
+            if(isLogin){
+                const { encodedToken, foundUser } = isLogin;
+                setAuth(() => ({
+                    token: encodedToken,
+                    user: foundUser,
+                    isAuth: true
+                }));
+                localStorage.setItem("token", JSON.stringify(encodedToken));
+                localStorage.setItem("user", JSON.stringify(foundUser));
+                localStorage.setItem("isAuth", "true");
+                setTimeout(() => {
+                    setLoginCreds(initalLoginCreds);
+                    navigate('/');
+                }, 1000)
+            }
+            else{
+                throw new Error("Failure! Login failed.");
+            }
+
         }catch(error){
-            console.error(e);
+            console.log(error.message);
         }
     }
 
@@ -46,20 +57,7 @@ const Login = () => {
     const testLoginFormHandler = async (e, loginCreds) => {
         e.preventDefault();
         setLoginCreds(testLoginCreds);
-        try {
-            const { data: { encodedToken, foundUser }, status } = await loginUser(loginCreds);
-            setLoginCreds(initalLoginCreds);
-            if (status === 200){
-                localStorage.setItem("token", JSON.stringify(encodedToken));
-                localStorage.setItem("User", JSON.stringify(foundUser));
-            }
-            if(status===500)
-                throw new Error("Internal server error!");
-            dispatch({ type: "login", payload:{token: encodedToken, user: foundUser} });
-            navigate('/');
-        } catch (e) {
-            console.error(e);
-        }
+        loginFormHandler(e, loginCreds);
     }
 
     return (

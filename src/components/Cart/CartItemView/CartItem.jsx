@@ -4,7 +4,7 @@ import { useAuth } from '../../../contexts/index';
 
 const CartItem = () => {
   const {state:{cart}, dispatch} = useProduct();
-  const {state: {payload: {token}}} = useAuth(); 
+  const {auth: {token}} = useAuth(); 
 
   const updateCartItemHandler = (id, data) => {
     updateCartItem(dispatch, id, data);
