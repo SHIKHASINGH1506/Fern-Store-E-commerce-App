@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../contexts/authContext";
 import { loginUser } from "../../../services/authService";
+import { useToast } from "../../../custom-hooks/useToast";
 
 const Login = () => {
     const navigate = useNavigate();
@@ -16,7 +17,8 @@ const Login = () => {
         password: 'shikhasingh123'
     };
     const [loginCreds, setLoginCreds] = useState(initalLoginCreds);
-    const { auth, setAuth } = useAuth();
+    const { setAuth } = useAuth();
+    const { showToast } = useToast();
 
     const setLoginFields = (e) => {
         const { value, name } = e.target;
@@ -30,6 +32,7 @@ const Login = () => {
             const isLogin = await loginUser(loginCreds);
 
             if(isLogin){
+                showToast('Login successful!', 'success');
                 const { encodedToken, foundUser } = isLogin;
                 setAuth(() => ({
                     token: encodedToken,

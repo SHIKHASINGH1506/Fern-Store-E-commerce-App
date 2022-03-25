@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signupUser } from '../../../services/index';
 import { useAuth } from '../../../contexts/index';
+import { useToast } from "../../../custom-hooks/useToast";
 
 const Signup = () => {
   const initialSignupFields = {
@@ -14,6 +15,7 @@ const Signup = () => {
   const [signupFields, setSignupFields] = useState(initialSignupFields);
   const navigate = useNavigate();
   const {setAuth} = useAuth();
+  const {showToast} = useToast();
 
   const fieldChangeHandler = (e) => {
     const {name, value} = e.target;
@@ -29,6 +31,7 @@ const Signup = () => {
       const isSignup = await signupUser(signupFields);
 
       if(isSignup){
+        showToast('Account created successfuly!', 'success');
         const {createdUser, encodedToken} = isSignup;
         setAuth({
           token: encodedToken,
