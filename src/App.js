@@ -1,5 +1,9 @@
-import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import 'react-toastify/dist/ReactToastify.min.css';
+
+import { Routes, Route } from "react-router-dom";
+import {ToastContainer} from 'react-toastify';
+
 import {
   Home,
   Navbar,
@@ -7,13 +11,27 @@ import {
   Login,
   Signup,
   Cart,
-  Wishlist
+  Wishlist,
+  Loader
 } from "./components/index";
 import Mockman from 'mockman-js';
+import { useProduct } from "./contexts";
 
 function App() {
+  const {loader} = useProduct();
   return (
     <div className="App">
+      {loader && <Loader />}
+      <ToastContainer 
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable
+        pauseOnHover
+      />
       <Navbar />
       <Routes>
         <Route path='/' element={<Home/>}></Route>
