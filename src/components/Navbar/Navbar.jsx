@@ -1,7 +1,7 @@
 import '../Navbar/navbar.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import { useAuth, useProduct } from "../../contexts/index";
+import { useAuth, useProduct, useSlider } from "../../contexts/index";
 import { getTotalItemInCart } from "../../utils/cart/cart";
 
 const Navbar = () => {
@@ -9,6 +9,7 @@ const Navbar = () => {
     const {state: {cart, wishlist}, dispatch} = useProduct();
     const { totalItem } = getTotalItemInCart(cart);
     const { auth: {token, isAuth}, setAuth } = useAuth();
+    const { slider, setSlider } = useSlider();
 
     const logoutUser = () =>{
         dispatch({
@@ -23,6 +24,10 @@ const Navbar = () => {
         navigate('/');
     }
 
+    const sliderHandler = () => {
+        setSlider(currentSliderState => !currentSliderState);
+    }
+
     return (
         <header className="navbar-home">
             <nav className="navbar-wrapper">
@@ -33,6 +38,7 @@ const Navbar = () => {
                         viewBox="0 0 100 40"
                         width="40"
                         height="40"
+                        onClick={() => sliderHandler()}
                     >
                         <rect width="60" height="10"></rect>
                         <rect y="20" width="60" height="10"></rect>
@@ -96,8 +102,8 @@ const Navbar = () => {
                         }
                     </ul>
                 </div>
-                <div className="sidebar-wrapper" id="sidebar-wrapper">
-                    <div className="sidebar" id="sidebar">
+                <div className={`sidebar-wrapper ${slider ? 'show' : ''}`} id="sidebar-wrapper">
+                    <div className={`sidebar ${slider ? 'view' : ''}`} id="sidebar">
                         <ul className="sidebar-list sidebar-collapse">
                             <li className="sidebar-item hide">
                                 <a className="sidebar-item-link profile-icon" href="#"><i className="fas fa-user"></i></a>
