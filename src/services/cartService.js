@@ -2,13 +2,15 @@ import axios from 'axios';
 
 const cartBaseUrl = '/api/user/cart';
 
-const addProductToCart = async (dispatch, data) => {
+const addProductToCart = async (dispatch, data, showToast) => {
   const token = JSON.parse(localStorage.getItem("token"));
   const Headers = {authorization: token};
   try{
     const {data: {cart}, status} = await axios.post(cartBaseUrl, data, {headers: Headers});
-    if(status>=200 && status<=300)
+    if(status>=200 && status<=300){
       dispatch({type: 'UPDATE_CART', payload: cart}); 
+      showToast('Added to cart!', 'success');
+    }
     else{
       throw new Error("Couldn't add to cart!")
     }
