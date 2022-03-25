@@ -106,19 +106,19 @@ const Navbar = () => {
                     <div className={`sidebar ${slider ? 'view' : ''}`} id="sidebar">
                         <ul className="sidebar-list sidebar-collapse">
                             <li className="sidebar-item hide">
-                                <a className="sidebar-item-link profile-icon" href="#"><i className="fas fa-user"></i></a>
+                                <Link className="sidebar-item-link profile-icon" to="#"><i className="fas fa-user"></i></Link>
                             </li>
                             <li className="sidebar-item">
-                                <a className="sidebar-item-link" href="#">Home</a>
+                                <Link className="sidebar-item-link" to="/">Home</Link>
                             </li>
                             <li className="sidebar-item">
-                                <a className="sidebar-item-link" href="./Components/Products/product.html">Product</a>
+                                <Link className="sidebar-item-link" to="/Products">Product</Link>
                             </li>
                             <li className="sidebar-item hide">
-                                <a className="sidebar-item-link" href="#">Order</a>
+                                <Link className="sidebar-item-link" to="/Cart">View Cart</Link>
                             </li>
                             <li className="sidebar-item hide">
-                                <a className="sidebar-item-link" href="#">Contact Us</a>
+                                <Link className="sidebar-item-link" to="#">Contact Us</Link>
                             </li>
                         </ul>
                     </div>
