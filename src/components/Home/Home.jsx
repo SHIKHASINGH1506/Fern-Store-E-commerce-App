@@ -1,5 +1,6 @@
 import './home.css';
 import {useEffect, useState} from "react";
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import {HeroImage} from "../../assets/index";
 
@@ -42,7 +43,7 @@ useEffect(() => {
                     {categories.map( ({_id, img, categoryName}) => {
                         return(
                             <div className="feature-box" key={_id}>
-                                <a href="/Products">
+                                <Link to="/Products">
                                     <div>
                                         <img
                                             className="responsive-img homepage-feature-img"
@@ -51,7 +52,7 @@ useEffect(() => {
                                         />
                                     </div>
                                     <p>{categoryName}</p>
-                                </a>
+                                </Link>
                             </div>
                         );
                     })}

@@ -1,14 +1,28 @@
 import '../Navbar/navbar.css';
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import { useAuth, useFilter } from "../../contexts/index";
-
-
+import { useAuth, useProduct } from "../../contexts/index";
+import { getTotalItemInCart } from "../../utils/cart/cart";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const {state: {cart}} = useFilter();
-    const { state: { payload: { token } } } = useAuth();
+    const {state: {cart, wishlist}, dispatch} = useProduct();
+    const { totalItem } = getTotalItemInCart(cart);
+    const { auth: {token, isAuth}, setAuth } = useAuth();
+
+    const logoutUser = () =>{
+        dispatch({
+            type:"LOGOUT"
+        });
+        setAuth({
+            token:'',
+            user:{},
+            isAuth: false
+        });
+        localStorage.clear();
+        navigate('/');
+    }
+
     return (
         <header className="navbar-home">
             <nav className="navbar-wrapper">
@@ -57,7 +71,7 @@ const Navbar = () => {
                                         : navigate('Login')}
                                 >
                                     <i className="fas fa-shopping-bag"></i>
-                                    {cart.length>0 && <span class="btn-badge d-flex justify-center items-center">{cart.length}</span>}
+                                    {cart.length>0 && <span class="btn-badge d-flex justify-center items-center">{totalItem}</span>}
                                 </span>
                             </div>
                         </li>
@@ -69,16 +83,17 @@ const Navbar = () => {
                                         : navigate('Login')}
                                 >
                                     <i className="fas fa-heart"></i>
-                                    <span class="btn-badge d-flex justify-center items-center">8</span>
+                                    {wishlist.length> 0 && <span class="btn-badge d-flex justify-center items-center">{wishlist.length}</span>}
                                 </span>
                             </div>
                         </li>
-                        <li className="nav-item">
+                       {!isAuth && <li className="nav-item">
                             <Link to='/Login' className='nav-item-link'>LOGIN</Link>
+                        </li>}
+                        {isAuth && <li className="nav-item">
+                            <div onClick={() => logoutUser()} className='nav-item-link'>LOGOUT</div>
                         </li>
-                        {/* <li className="nav-item">
-                            <Link to='/Login' className='nav-item-link'>LOGOUT</Link>
-                        </li> */}
+                        }
                     </ul>
                 </div>
                 <div className="sidebar-wrapper" id="sidebar-wrapper">

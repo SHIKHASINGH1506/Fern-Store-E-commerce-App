@@ -1,5 +1,5 @@
-import { FilterContextProvider, useFilter } from "./filterContext";
+import { ProductContextProvider, useProduct } from "./productContext";
 import { AuthContextProvider, useAuth } from "./authContext";
 
-export { FilterContextProvider, useFilter };
+export { ProductContextProvider, useProduct };
 export { AuthContextProvider, useAuth};

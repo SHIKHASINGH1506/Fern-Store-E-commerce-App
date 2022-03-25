@@ -1,4 +1,4 @@
-export const filterReducer = (state, action) => {
+export const productReducer = (state, action) => {
   const {type, payload} = action;
   const {categories} = state;
   switch (type) {
@@ -50,6 +50,17 @@ export const filterReducer = (state, action) => {
       return {
         ...state,
         cart: [...action.payload]
+      }
+    case 'UPDATE_WISHLIST':
+      return {
+        ...state,
+        wishlist: [...action.payload]
+      }
+    case 'LOGOUT':
+      return {
+        ...state,
+        cart: [],
+        wishlist: []
       }
     case 'CLEAR': 
       for(const cat in categories)

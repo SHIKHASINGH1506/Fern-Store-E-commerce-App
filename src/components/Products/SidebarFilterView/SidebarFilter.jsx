@@ -1,8 +1,8 @@
 import './sidebarFilter.css';
-import {useFilter} from "../../../contexts/filterContext";
+import {useProduct} from "../../../contexts/index";
 
 const SidebarFilter = () => {
-    const { state: {categories, priceRange, products}, dispatch }  = useFilter();
+    const { state: {categories, priceRange, products}, dispatch }  = useProduct();
     const stars = [4,3,2];
 
     const changeHandler = (filterType, filterValue, e) => {

@@ -1,7 +1,7 @@
 import './productListing.css';
 import {useEffect} from "react";
 import axios from "axios";
-import {useFilter} from '../../../contexts/filterContext';
+import {useProduct} from '../../../contexts/index';
 import {SidebarFilter} from '../SidebarFilterView/SidebarFilter';
 import {ProductCard} from '../ProductCardView/ProductCard';
 import {
@@ -13,7 +13,7 @@ import {
 
 
 const ProductListing = () => {
-const {state : {sortBy, categories, priceRange, products, starRating}, dispatch} = useFilter();
+const {state : {sortBy, categories, priceRange, products, starRating}, dispatch} = useProduct();
 
 useEffect(() => {
     (async () => {
