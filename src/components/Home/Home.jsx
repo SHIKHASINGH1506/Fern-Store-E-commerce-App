@@ -2,7 +2,8 @@ import './home.css';
 import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import { HeroImage}  from "../../assets/index";
+
+import { HeroImage}  from "assets/index";
 
 export const Home = () => {
 const [categories, setCateogries] = useState([]);
