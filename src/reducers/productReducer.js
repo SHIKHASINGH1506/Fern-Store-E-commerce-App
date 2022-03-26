@@ -69,7 +69,7 @@ export const productReducer = (state, action) => {
         ...state,
         sortBy: "",
         categories: categories,
-        priceRange: 1300,
+        priceRange: 600,
         starRating: "",
         products: payload
       }
