@@ -6,7 +6,7 @@ import {
   useEffect, 
   useState } from "react";
 
-import { productReducer } from '../reducers/productReducer';
+import { productReducer } from 'reducers/productReducer';
 
 const ProductContext = createContext();
 const useProduct = () => useContext(ProductContext);

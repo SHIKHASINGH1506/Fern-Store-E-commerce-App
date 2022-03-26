@@ -1,5 +1,5 @@
 import './sidebarFilter.css';
-import {useProduct} from "../../../contexts/index";
+import {useProduct} from "contexts/index";
 
 const SidebarFilter = () => {
     const { state: {categories, priceRange, products}, dispatch }  = useProduct();

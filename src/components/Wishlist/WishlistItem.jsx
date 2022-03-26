@@ -1,6 +1,10 @@
-import { useProduct } from "../../contexts/index"; 
-import { isItemInCart } from "../../utils/cart/cart";
-import {addProductToCart, deleteProductFromWishlist, updateCartItem} from "../../services/index";
+import { useProduct } from "contexts/index"; 
+import { isItemInCart } from "utils/cart/cart";
+import { 
+  addProductToCart, 
+  deleteProductFromWishlist, 
+  updateCartItem
+} from "services/index";
 
 const WishlistItem = ({item}) => {
   const {

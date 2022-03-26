@@ -1,9 +1,11 @@
 import '../Navbar/navbar.css';
+
 import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
-import { useAuth, useProduct, useSlider } from "../../contexts/index";
-import { getTotalItemInCart } from "../../utils/cart/cart";
-import {logo} from "../../assets/index";
+
+import { useAuth, useProduct, useSlider } from "contexts/index";
+import { getTotalItemInCart } from "utils/cart/cart";
+import { logo } from "assets/index";
 
 const Navbar = () => {
     const navigate = useNavigate();

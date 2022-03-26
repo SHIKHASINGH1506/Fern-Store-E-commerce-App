@@ -3,16 +3,15 @@ import './productListing.css';
 import {useEffect} from "react";
 import axios from "axios";
 
-import {useProduct} from '../../../contexts/index';
-import {SidebarFilter} from '../SidebarFilterView/SidebarFilter';
-import {ProductCard} from '../ProductCardView/ProductCard';
-
+import {useProduct} from 'contexts/index';
+import {SidebarFilter} from 'components/Products/SidebarFilterView/SidebarFilter';
+import {ProductCard} from 'components/Products/ProductCardView/ProductCard';
 import {
     getSortedData,
     getProductsInPriceRange,
     getCateogrisedProducts,
     getDatainStarRatingRange
-  } from '../../../utils/sortAndFilter/index';
+  } from 'utils/sortAndFilter/index';
 
 
 const ProductListing = () => {

@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signupUser } from '../../../services/index';
-import { useAuth } from '../../../contexts/index';
-import { useToast } from "../../../custom-hooks/useToast";
+
+import { signupUser } from 'services/index';
+import { useAuth } from 'contexts/index';
+import { useToast } from "custom-hooks/useToast";
 
 const Signup = () => {
   const initialSignupFields = {

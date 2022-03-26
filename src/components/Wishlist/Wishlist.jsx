@@ -1,6 +1,6 @@
 import './wishlist.css';
-import { useProduct } from "../../contexts/index";
-import { WishlistItem } from "./WishlistItem";
+import { useProduct } from "contexts/index";
+import { WishlistItem } from "components/Wishlist/WishlistItem";
 
 const Wishlist = () => {
   const { state: {wishlist} } = useProduct();

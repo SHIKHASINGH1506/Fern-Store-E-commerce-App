@@ -1,5 +1,5 @@
-import { useProduct } from '../../../contexts/index';
-import { getPriceDetails } from "../../../utils/cart/cart";
+import { useProduct } from 'contexts/index';
+import { getPriceDetails } from "utils/cart/cart";
 
 const OrderDetail = () => {
   const {state: {cart}} = useProduct();

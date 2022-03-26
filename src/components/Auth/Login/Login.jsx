@@ -2,9 +2,9 @@ import './login.css';
 import { Link } from 'react-router-dom';
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "../../../contexts/authContext";
-import { loginUser } from "../../../services/authService";
-import { useToast } from "../../../custom-hooks/useToast";
+import { useAuth } from "contexts/authContext";
+import { loginUser } from "services/authService";
+import { useToast } from "custom-hooks/useToast";
 
 const Login = () => {
     const navigate = useNavigate();

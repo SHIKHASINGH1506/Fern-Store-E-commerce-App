@@ -1,8 +1,8 @@
 import './cart.css';
-import { useProduct } from '../../../contexts/index';
-import { CartItem } from "../CartItemView/CartItem";
-import { OrderDetail } from "../OrderDetailsView/OrderDetail";
-import { getTotalItemInCart } from "../../../utils/cart/cart";
+import { useProduct } from 'contexts/index';
+import { CartItem } from "components/Cart/CartItemView/CartItem";
+import { OrderDetail } from "components/Cart/OrderDetailsView/OrderDetail";
+import { getTotalItemInCart } from "utils/cart/cart";
 
 const Cart = () => {
   const {state: {cart}} = useProduct();

@@ -1,11 +1,15 @@
 import './productCard.css';
 import { useNavigate } from 'react-router';
-import { useProduct } from "../../../contexts/index";
-import { addProductToCart, addProductToWishlist, deleteProductFromWishlist} from "../../../services/index";
-import { useAuth } from '../../../contexts/index'; 
-import { isItemInCart } from "../../../utils/cart/cart";
-import { isItemnWishlist } from "../../../utils/wishlist/wishlist";
-import { useToast } from "../../../custom-hooks/useToast";
+import { useProduct } from "contexts/index";
+import { 
+    addProductToCart, 
+    addProductToWishlist, 
+    deleteProductFromWishlist
+} from "services/index";
+import { useAuth } from 'contexts/index'; 
+import { isItemInCart } from "utils/cart/cart";
+import { isItemnWishlist } from "utils/wishlist/wishlist";
+import { useToast } from "custom-hooks/useToast";
 
 const ProductCard = ({product}) => {
     const { 
