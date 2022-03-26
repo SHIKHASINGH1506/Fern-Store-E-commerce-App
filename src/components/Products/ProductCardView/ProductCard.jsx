@@ -1,5 +1,5 @@
 import './productCard.css';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import { useProduct } from "contexts/index";
 import { 
     addProductToCart, 
