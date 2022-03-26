@@ -13,7 +13,7 @@ import {
   Cart,
   Wishlist,
   Loader
-} from "./components/index";
+} from "./components";
 import Mockman from 'mockman-js';
 import { useProduct } from "./contexts";
 
