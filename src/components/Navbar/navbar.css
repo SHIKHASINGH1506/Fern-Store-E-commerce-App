@@ -1,5 +1,5 @@
 .navbar-home {
-    padding: 0.7rem 0rem;
+    padding: 0.6rem 0rem;
     box-shadow: 0px 0px 10px 4px rgb(0 0 0 / 10%);
     position: sticky;
     top: 0;
@@ -31,11 +31,14 @@
   .sidebar-toggler {
     display: none;
   }
+  .logo-wrapper{
+    height: 1.87rem;
+    width: 1.87rem;
+  }
   .brand-logo {
     font-weight: bold;
     font-size: 1.4rem;
     color: var(--primary-color);
-    margin-right: 3rem;
     letter-spacing: 2px;
   }
   .navbar-right-aligned {
@@ -74,16 +77,17 @@
     flex-grow: 1;
     position: relative;
     background-color: #f7f7fd;
+    margin: 0 0.45rem;
   }
   .search-bar__btn {
-    padding: 0.5rem 0.7rem;
+    padding: 0.3rem 0.7rem;
     background: transparent;
     border: none;
     font-size: 1rem;
     color: var(--dark-secondary-text-color);
   }
   .search-bar-input {
-    padding: 0.5rem 0.7rem;
+    padding: 0.3rem 0.7rem;
     border: none;
     background-color: #f7f7fd;
     width: 100%;

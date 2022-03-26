@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 import { useAuth, useProduct, useSlider } from "../../contexts/index";
 import { getTotalItemInCart } from "../../utils/cart/cart";
+import {logo} from "../../assets/index";
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -44,7 +45,10 @@ const Navbar = () => {
                         <rect y="20" width="60" height="10"></rect>
                         <rect y="40" width="60" height="10"></rect>
                     </svg>
-                    <a className="brand-logo" href="#">FERN</a>
+                    <div className="logo-wrapper"><img src={logo} className="responsive-img"/></div>
+                    <Link className="brand-logo mx-2" to="/">FERN</Link>
+                   
+                   
 
                     <ul className="navbar-nav navbar-nav-collapse">
                         <li className="nav-item">
