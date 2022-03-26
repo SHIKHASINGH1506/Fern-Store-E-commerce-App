@@ -1,6 +1,12 @@
 import axios from "axios";
-import { createContext, useContext, useReducer, useEffect } from "react";
-import { productReducer } from '../reducers/productReducer';
+import { 
+  createContext, 
+  useContext, 
+  useReducer, 
+  useEffect, 
+  useState } from "react";
+
+import { productReducer } from 'reducers/productReducer';
 
 const ProductContext = createContext();
 const useProduct = () => useContext(ProductContext);
@@ -15,6 +21,7 @@ const initialState =  {
   };
 const ProductContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(productReducer, initialState);
+    const [loader, setLoader] = useState(false);
 
     useEffect(() => {
         (async () => {
@@ -32,7 +39,7 @@ const ProductContextProvider = ({ children }) => {
     }, []);
 
   return (
-    <ProductContext.Provider value={{ state, dispatch }}>
+    <ProductContext.Provider value={{ state, dispatch, loader, setLoader }}>
       {children}
     </ProductContext.Provider>
   );

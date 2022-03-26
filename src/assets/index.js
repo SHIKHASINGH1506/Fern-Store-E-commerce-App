@@ -14,6 +14,7 @@ import FiddleLeaf from "./images/FiddleLeaf.jpg";
 import SnakePlant from "./images/SnakePlant.webp";
 import JadePlant from "./images/JadePlant.jpg";
 import ChineseMoneyPlant from "./images/ChineseMoneyPlant.jfif";
+import logo from "./images/plant.png";
 
 export {
     LowMaintainanceCategory,
@@ -31,5 +32,6 @@ export {
     SnakePlant,
     JadePlant,
     ChineseMoneyPlant,
-    ZZ
+    ZZ,
+    logo
 }

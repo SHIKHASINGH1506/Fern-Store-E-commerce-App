@@ -1,6 +1,9 @@
-import { updateCartItem, deleteCartItem, addProductToWishlist } from '../../../services/index';
-import { useProduct } from '../../../contexts/index';
-import { useAuth } from '../../../contexts/index';
+import { 
+  updateCartItem, 
+  deleteCartItem, 
+  addProductToWishlist } from 'services';
+import { useProduct } from 'contexts';
+import { useAuth } from 'contexts';
 
 const CartItem = () => {
   const {state:{cart}, dispatch} = useProduct();

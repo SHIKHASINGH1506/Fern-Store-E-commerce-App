@@ -1,10 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
-import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
-import { ProductContextProvider, AuthContextProvider } from "./contexts/index";
+import { ProductContextProvider, AuthContextProvider, SliderProvider } from "./contexts/index";
 
 // Call make Server
 makeServer();
@@ -13,9 +12,11 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <AuthContextProvider>
-        <ProductContextProvider>
-          <App />
-        </ProductContextProvider>
+        <SliderProvider>
+          <ProductContextProvider>
+            <App />
+          </ProductContextProvider>
+        </SliderProvider>
       </AuthContextProvider>
     </Router>
 

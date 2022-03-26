@@ -1,8 +1,9 @@
 import './home.css';
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import {HeroImage} from "../../assets/index";
+
+import { HeroImage}  from "assets/index";
 
 export const Home = () => {
 const [categories, setCateogries] = useState([]);
@@ -19,9 +20,9 @@ useEffect(() => {
                 <div className="text-overlay">
                     <h1 className="text-overlay-title">LIVE WITH NATURE</h1>
                     <button className="bttn bttn-primary bttn-lg">
-                        <a className="shop-btn" href="./Components/Products/product.html">
-                            SHOP NOW</a
-                        >
+                        <Link className="shop-btn" to="/Products">
+                            SHOP NOW
+                        </Link>
                     </button>
                 </div>
                 <a href="#">

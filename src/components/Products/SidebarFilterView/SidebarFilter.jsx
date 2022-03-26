@@ -1,5 +1,5 @@
 import './sidebarFilter.css';
-import {useProduct} from "../../../contexts/index";
+import {useProduct} from "contexts/index";
 
 const SidebarFilter = () => {
     const { state: {categories, priceRange, products}, dispatch }  = useProduct();
@@ -16,16 +16,16 @@ const SidebarFilter = () => {
     return (
         <div className="product-sidebar mr-6">
             <aside className="side-navbar">
-                <header className="nav-header py-4">
+                <header className="nav-header">
                     <div className="px-4 bold">Filters</div>
-                    <a href="" className="link-text-primary px-6"
-                    onClick = {() => changeHandler("CLEAR", products)}>clear</a>
+                    <p className="link-text-primary px-6"
+                    onClick = {() => changeHandler("CLEAR", products)}>clear</p>
                 </header>
                 <div className="side-navbar">
                     <div className="price-filter">
                         <div className="list-title px-4 my-2 bold">Price</div>
-                        <div className="slider px-4">
-                            <div className="range">
+                        <div className="slider list-item px-4">
+                            <div className="range w-full">
                             <datalist id="tickmarks">
                                 <option value="300" label="300"></option>
                                 <option value="1200" label="1200"></option>
@@ -48,7 +48,7 @@ const SidebarFilter = () => {
                         <div className="checklist">
                             {stars.map(star => {
                                 return(
-                                    <label className="list-item" for={`rating${star}`} key={star}>
+                                    <label className="list-item" htmlFor={`rating${star}`} key={star}>
                                     <input
                                         className="mr-4"
                                         type="radio"
@@ -68,7 +68,7 @@ const SidebarFilter = () => {
                             {Object.entries(categories).map(item =>{ 
                                 const [categoryName, isChecked] = item;
                                 return(
-                                    <label key={categoryName} className="list-item" for={categoryName}>
+                                    <label key={categoryName} className="list-item" htmlFor={categoryName}>
                                     <input
                                         className="mr-4"
                                         type="checkbox"
@@ -86,7 +86,7 @@ const SidebarFilter = () => {
                     <div className="sort-filter">
                         <div className="checklist">
                             <div className="list-title px-4 my-2 bold">Sort by</div>
-                            <label className="list-item" for="highToLow">
+                            <label className="list-item" htmlFor="highToLow">
                                 <input
                                     className="mr-4"
                                     type="radio"
@@ -96,7 +96,7 @@ const SidebarFilter = () => {
                                 />
                                 price low-to-high
                             </label>
-                            <label className="list-item" for="lowToHigh">
+                            <label className="list-item" htmlFor="lowToHigh">
                                 <input
                                     className="mr-4"
                                     type="radio"
