@@ -73,7 +73,7 @@ const Login = () => {
                     <h3 className="login-title">Log in</h3>
                     <p className="login-subtitle text-center">Enter email and password</p>
                     <div className="input-container">
-                        <label className="input-label" for="userName">Email</label>
+                        <label className="input-label" htmlFor="userName">Email</label>
                         <input
                             className="input-section"
                             type="text"
@@ -86,7 +86,7 @@ const Login = () => {
                         />
                     </div>
                     <div className="input-container">
-                        <label className="input-label" for="pwd">Password</label>
+                        <label className="input-label" htmlFor="pwd">Password</label>
                         <input
                             className="input-section"
                             type="password"
@@ -100,7 +100,7 @@ const Login = () => {
                     </div>
                     <div className="login-help">
                         <div>
-                            <label className="input-label text-sm" for="pwd-store">
+                            <label className="input-label text-sm" htmlFor="pwd-store">
                                 <input type="checkbox" name="" id="pwd-store" />
                                 Remember me
                             </label>
