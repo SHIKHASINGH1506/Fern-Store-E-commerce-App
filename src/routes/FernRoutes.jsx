@@ -7,6 +7,7 @@ import {
   Signup,
   Cart,
   Wishlist,
+  SingleProduct
 } from "components";
 
 const FernRoutes = () => {
@@ -15,6 +16,7 @@ const FernRoutes = () => {
             <Route path="/" element={<Home />} /> 
             <Route path="/Home" element={<Home />} /> 
             <Route path='/Products' element={<ProductListing/>}></Route>
+            <Route path="/Products/:productId" element={<SingleProduct />} />
             <Route path='/Login' element={<Login/>}></Route>
             <Route path='/Signup' element={<Signup/>}></Route>
             <Route path="/" element={<FernPrivateRoutes />}>

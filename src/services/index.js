@@ -1,6 +1,7 @@
 import {addProductToCart, updateCartItem, deleteCartItem} from "./cartService";
 import {addProductToWishlist, deleteProductFromWishlist} from "./wishlistService";
 import {loginUser, signupUser} from "./authService";
+import { getProductData } from "./productService";
 
 export {
     addProductToCart, 
@@ -9,5 +10,6 @@ export {
     addProductToWishlist,
     deleteProductFromWishlist,
     loginUser,
-    signupUser
+    signupUser,
+    getProductData
 };

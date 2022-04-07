@@ -50,7 +50,7 @@ const ProductCard = ({product}) => {
 
     return (
         <div className="card-vertical">
-            <div className="card-image-container">
+            <div className="card-image-container" onClick={() => navigate(`/Products/${_id}`)}>
                 <img
                     className="responsive-img"
                     src={img}
