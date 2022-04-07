@@ -1,7 +1,8 @@
 import './home.css';
 import { useEffect, useState } from "react";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useProduct } from 'contexts';
 
 import { HeroImage}  from "assets/index";
 
@@ -13,6 +14,13 @@ useEffect(() => {
       setCateogries(() => categories);
     })();
 }, []);
+const {dispatch} = useProduct();
+const navigate = useNavigate();
+
+const categoryHandler= (catepgryName) => {
+    dispatch({type: 'CATEOGRY', payload: {[catepgryName]: true}});
+    navigate('/Products');
+}
 
     return (
         <div className="landing-page-layout">
@@ -43,9 +51,8 @@ useEffect(() => {
                 <div className="asideSection">
                     {categories.map( ({_id, img, categoryName}) => {
                         return(
-                            <div className="feature-box" key={_id}>
-                                <Link to="/Products">
-                                    <div>
+                            <div className="feature-box mx-4" key={_id} onClick={() => categoryHandler(categoryName)}>
+                                    <div className="feature-img">
                                         <img
                                             className="responsive-img homepage-feature-img"
                                             src={img}
@@ -53,7 +60,6 @@ useEffect(() => {
                                         />
                                     </div>
                                     <p>{categoryName}</p>
-                                </Link>
                             </div>
                         );
                     })}

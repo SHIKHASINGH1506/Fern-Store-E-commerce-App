@@ -1,6 +1,7 @@
 .card-vertical {
   background-color: transparent;
   margin-bottom: 2rem;
+  cursor: pointer;
 }
 .card-image-container {
   max-height: 15.625rem;
@@ -12,6 +13,10 @@
   transition: all 0.3s ease 0s;
   background-color: var(--dark-primary-color);
 }
+.card-image-container:hover{
+  transition: 0.3s ease-in-out all;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 .card-image-container .bttn{
   color: #d4d7db;;
   transition: all 0.3s ease 0s;
@@ -21,4 +26,8 @@
 }
 .card-image-container .wishlist-icon{
   color: var(--light-danger-color);
+}
+.product-price{
+  color: var(--secondary-text-color);
+  text-decoration: line-through;
 }

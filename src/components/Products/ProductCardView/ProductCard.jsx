@@ -50,7 +50,7 @@ const ProductCard = ({product}) => {
 
     return (
         <div className="card-vertical">
-            <div className="card-image-container">
+            <div className="card-image-container" onClick={() => navigate(`/Products/${_id}`)}>
                 <img
                     className="responsive-img"
                     src={img}
@@ -74,8 +74,8 @@ const ProductCard = ({product}) => {
                     <span className="product-discounted-price">
                        Rs. {discountedPrice} 
                     </span>
-                    <span className="product-original-price">Rs. {price}</span>
-                    <span className="product-discount">{discountPercentage}</span>
+                    <span className="product-price mx-2">Rs. {price}</span>
+                    <span className="product-discount">({discountPercentage})</span>
                 </div>
                 <button className="bttn bttn-primary" onClick={() => addToCartHandler(product)}>
                     <span className="bttn-icon">

@@ -103,7 +103,7 @@ const Navbar = () => {
                             <Link to='/Login' className='nav-item-link'>LOGIN</Link>
                         </li>}
                         {isAuth && <li className="nav-item">
-                            <div onClick={() => logoutUser()} className='nav-item-link'>LOGOUT</div>
+                            <button onClick={() => logoutUser()} className='transparent-btn nav-item-link'>LOGOUT</button>
                         </li>
                         }
                     </ul>
