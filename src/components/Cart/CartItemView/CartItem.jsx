@@ -4,18 +4,26 @@ import {
   addProductToWishlist } from 'services';
 import { useProduct } from 'contexts';
 import { useAuth } from 'contexts';
+import { useToast } from 'custom-hooks/useToast';
 
 const CartItem = () => {
-  const {state:{cart}, dispatch} = useProduct();
+  const {state:{cart, wishlist}, dispatch} = useProduct();
   const {auth: {token}} = useAuth(); 
+  const {showToast} = useToast();
 
   const updateCartItemHandler = (id, data) => {
     updateCartItem(dispatch, id, data);
   }
 
   const wishlistHandler = (product) => {
-    deleteCartItem(dispatch, product._id);
-    addProductToWishlist(dispatch, {product: product});
+   const item = wishlist.find(wishlistItem => wishlistItem._id === product._id);
+    if(item) 
+      showToast('Item already present in wishlist', 'warning');
+    else{
+      deleteCartItem(dispatch, product._id);
+      addProductToWishlist(dispatch, {product: product});
+     
+    }
   }
 
   return (
