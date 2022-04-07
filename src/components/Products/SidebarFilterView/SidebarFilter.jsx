@@ -6,7 +6,7 @@ const SidebarFilter = () => {
     const stars = [4,3,2];
 
     const changeHandler = (filterType, filterValue, e) => {
-        const type = filterType;
+        const type = filterType; 
         const payload = 
         filterType === 'CATEOGRY' 
             ? { [filterValue]: e.target.checked }
@@ -19,7 +19,7 @@ const SidebarFilter = () => {
                 <header className="nav-header">
                     <div className="px-4 bold">Filters</div>
                     <p className="link-text-primary px-6"
-                    onClick = {() => changeHandler("CLEAR", products)}>clear</p>
+                    onClick = {() => changeHandler("CLEAR", products)}>Clear</p>
                 </header>
                 <div className="side-navbar">
                     <div className="price-filter">
@@ -94,7 +94,7 @@ const SidebarFilter = () => {
                                     name="radioBtn"
                                     onChange={() => changeHandler('LOW_TO_HIGH')}
                                 />
-                                price low-to-high
+                                 Low to High
                             </label>
                             <label className="list-item" htmlFor="lowToHigh">
                                 <input
@@ -104,7 +104,7 @@ const SidebarFilter = () => {
                                     name="radioBtn"
                                     onChange={() => changeHandler('HIGH_TO_LOW')}
                                 />
-                                price high-to-low
+                                High to Low
                             </label>
                         </div>
                     </div>
