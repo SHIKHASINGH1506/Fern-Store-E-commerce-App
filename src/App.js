@@ -1,20 +1,13 @@
 import "./App.css";
 import 'react-toastify/dist/ReactToastify.min.css';
 
-import { Routes, Route } from "react-router-dom";
+// import { Routes, Route } from "react-router-dom";
 import {ToastContainer} from 'react-toastify';
-
+import { Routes } from 'routes/FernRoutes';
 import {
-  Home,
   Navbar,
-  ProductListing,
-  Login,
-  Signup,
-  Cart,
-  Wishlist,
   Loader
 } from "./components";
-import Mockman from 'mockman-js';
 import { useProduct } from "./contexts";
 
 function App() {
@@ -23,6 +16,7 @@ function App() {
     <div className="App">
       {loader && <Loader />}
       <ToastContainer 
+      style={{top:"4.5rem", right:"0"}}
         position="top-right"
         autoClose={2000}
         hideProgressBar={false}
@@ -31,17 +25,10 @@ function App() {
         rtl={false}
         draggable
         pauseOnHover
+      
       />
       <Navbar />
-      <Routes>
-        <Route path='/' element={<Home/>}></Route>
-        <Route path='/mock' element={<Mockman/>}></Route>
-        <Route path='/Products' element={<ProductListing/>}></Route>
-        <Route path='/Login' element={<Login/>}></Route>
-        <Route path='/Signup' element={<Signup/>}></Route>
-        <Route path='/Cart' element={<Cart/>}></Route>
-        <Route path='/Wishlist' element={<Wishlist/>}></Route>
-      </Routes>
+      <Routes />
     </div>
   );
 }
