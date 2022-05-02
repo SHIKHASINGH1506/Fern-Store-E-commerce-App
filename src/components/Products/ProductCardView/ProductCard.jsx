@@ -40,7 +40,8 @@ const ProductCard = ({product}) => {
             : navigate('/Login');
     }
 
-    const addToWishlistHandler = (product) => {
+    const addToWishlistHandler = (e, product) => {
+        e.stopPropagation()
         token 
             ? isProductInWishlist
                 ? deleteProductFromWishlist(dispatch, _id) 
@@ -63,7 +64,7 @@ const ProductCard = ({product}) => {
                 </div>
                 <button 
                     className={`bttn bttn-outline-secondary bttn-float-icon ${isProductInWishlist ? 'wishlist-icon' : ''}`}
-                    onClick={() => addToWishlistHandler(product)}>
+                    onClick={(e) => addToWishlistHandler(e, product)}>
                     <i className="fas fa-heart"></i>
                 </button>
             </div>
