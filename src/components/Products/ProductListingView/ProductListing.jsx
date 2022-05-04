@@ -26,22 +26,6 @@ const {state : {
     setLoader
 } = useProduct();
 
-useEffect(() => {
-    (async () => {
-        try{
-            setLoader(true);
-            const {data : {products}} = await axios.get('/api/products');
-            dispatch({
-                type: "INIT_PRODUCTS", 
-                payload: products
-            });
-            setLoader(false);
-        }catch(error){
-        console.log(error);
-        }
-    })();
-    }, []);
-
 const categorisedProducts = getCateogrisedProducts(products, categories);
 const productsInStarRating = getDatainStarRatingRange(categorisedProducts, starRating);
 const productsInPriceRange = getProductsInPriceRange(productsInStarRating, priceRange);

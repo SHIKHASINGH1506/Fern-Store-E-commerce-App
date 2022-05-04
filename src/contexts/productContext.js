@@ -38,6 +38,21 @@ const ProductContextProvider = ({ children }) => {
       }
     })();
   }, []);
+  useEffect(() => {
+    (async () => {
+        try{
+            setLoader(true);
+            const {data : {products}} = await axios.get('/api/products');
+            dispatch({
+                type: "INIT_PRODUCTS", 
+                payload: products
+            });
+            setLoader(false);
+        }catch(error){
+        console.log(error);
+        }
+    })();
+  }, []);
 
   return (
     <ProductContext.Provider value={{ state, dispatch, loader, setLoader }}>

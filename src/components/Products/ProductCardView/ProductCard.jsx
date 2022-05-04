@@ -76,7 +76,7 @@ const ProductCard = ({product}) => {
                        Rs. {discountedPrice} 
                     </span>
                     <span className="product-price mx-2">Rs. {price}</span>
-                    <span className="product-discount">({discountPercentage})</span>
+                    <span className="product-discount">({discountPercentage}%)</span>
                 </div>
                 <button className="bttn bttn-primary" onClick={() => addToCartHandler(product)}>
                     <span className="bttn-icon">
