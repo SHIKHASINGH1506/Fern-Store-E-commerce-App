@@ -7,3 +7,4 @@ export {Cart} from "./Cart/CartView/Cart";
 export {Wishlist} from "./Wishlist/Wishlist";
 export {Loader} from "./Loader/Loader";
 export {SingleProduct} from "./Products/SingleProductView/SingleProduct";
+export {Address} from "./Address/Address";

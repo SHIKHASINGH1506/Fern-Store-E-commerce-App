@@ -58,9 +58,7 @@ export const productReducer = (state, action) => {
       }
     case 'LOGOUT':
       return {
-        ...state,
-        cart: [],
-        wishlist: []
+        ...state
       }
     case 'CLEAR': 
       for(const cat in categories)
@@ -73,6 +71,11 @@ export const productReducer = (state, action) => {
         starRating: "",
         products: payload
       }
+    case 'SET_ADDRESS':
+      return {
+        ...state,
+        address: [...action.payload]
+      };
     default:
       return state;
   }

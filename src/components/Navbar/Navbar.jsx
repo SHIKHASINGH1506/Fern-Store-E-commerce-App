@@ -27,10 +27,11 @@ const Navbar = () => {
         localStorage.clear();
         navigate('/');
     }
-    console.log(showProfileModal);
     const sliderHandler = () => {
         setSlider(currentSliderState => !currentSliderState);
     }
+    let totalWishlistItems = isAuth ? wishlist.length : 0;
+    let totalCartItems = isAuth ? cart.length : 0;
 
     return (
         <header className="navbar-home">
@@ -83,7 +84,7 @@ const Navbar = () => {
                                         : navigate('Login')}
                                 >
                                     <i className="fas fa-shopping-bag"></i>
-                                    {cart.length > 0 && <span class="btn-badge d-flex justify-center items-center">{totalItem}</span>}
+                                    {totalCartItems > 0 && <span class="btn-badge d-flex justify-center items-center">{totalItem}</span>}
                                 </span>
                             </div>
                         </li>
@@ -95,14 +96,14 @@ const Navbar = () => {
                                         : navigate('Login')}
                                 >
                                     <i className="fas fa-heart"></i>
-                                    {wishlist.length > 0 && <span class="btn-badge d-flex justify-center items-center">{wishlist.length}</span>}
+                                    {totalWishlistItems > 0 && <span class="btn-badge d-flex justify-center items-center">{wishlist.length}</span>}
                                 </span>
                             </div>
                         </li>
                         <li className="nav-item">
                             <div
                                 className="nav-icon-link no-link-style"
-                                onClick={() => setProfileModal(prevState => !prevState)}><i className="nav-icon fas fa-user-circle"></i></div>
+                                onClick={() => setProfileModal(prevState => !prevState)}><i className=" nav-icon fas fa-user-circle"></i></div>
                         </li>
 
                         <div className={`details-overlay ${showProfileModal ? 'open' : ''}`}>
@@ -111,12 +112,18 @@ const Navbar = () => {
                         <div className={`profile-option ${showProfileModal ? 'show' : ''}`}>
                             <ul>
                                 <li className="profile-item">
-                                    <div className="icon-wrapper"><i class="fas fa-box-open"></i></div>Orders</li>
+                                    <div className="icon-wrapper"><i class="fas fa-box-open"></i></div>
+                                    Orders
+                                </li>
+                                <Link to='/address' className="profile-item">
+                                    <div className="icon-wrapper"><i class="fas fa-map-marker-alt"></i></div>
+                                    Address
+                                </Link>
                                 <li className="profile-item">
-                                <div className="icon-wrapper"><i class="fas fa-map-marker-alt"></i></div>Address</li>
-                                <li className="profile-item">
-                                <div className="icon-wrapper"><i class="fas fa-edit"></i></div>Profile Details</li>
-                                <li className="profile-item">
+                                    <div className="icon-wrapper"><i class="fas fa-edit"></i></div>
+                                    Profile Details
+                                </li>
+                                <li className="profile-item" onClick={() => logoutUser()}>
                                     <i class="fas fa-logout"></i>Sign Out</li>
                             </ul>
                         </div>

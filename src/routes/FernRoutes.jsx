@@ -7,7 +7,8 @@ import {
   Signup,
   Cart,
   Wishlist,
-  SingleProduct
+  SingleProduct,
+  Address
 } from "components";
 
 const FernRoutes = () => {
@@ -23,6 +24,7 @@ const FernRoutes = () => {
                 <Route path="/Cart" element={<Cart />} />
                 <Route path="/Wishlist" element={<Wishlist />} />
                 <Route path="/account" />
+                <Route path='/address' element={<Address/>}></Route>
             </Route>
         </Routes>               
     );

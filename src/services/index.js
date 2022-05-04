@@ -13,3 +13,4 @@ export {
     signupUser,
     getProductData
 };
+export {getAllAddress, addAddress, updateAddress, deleteAddress} from "./addressService";
