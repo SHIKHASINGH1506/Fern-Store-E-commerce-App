@@ -46,7 +46,6 @@ const AddressForm = ({
         "Lakshadweep",
         "Puducherry"
       ];
-  console.log(formHandler);
   return (
     <div className="address-table-container">
       <form className="address-form" onSubmit={(e) => formHandler(e, address)}>
@@ -113,12 +112,11 @@ const AddressForm = ({
             className="input-section"
             required
           >
+            
             {states.map((state, index) => {
               if (index === 0)
                 return (
-                  <option value="" disabled selected>
-                    {state}
-                  </option>
+                  <option value="" defaultValue>Select State</option>
                 );
               else
                 return (
@@ -128,70 +126,7 @@ const AddressForm = ({
                 );
             })}
           </select>
-          
         </div>
-        {/* <div className="row">
-          <input
-            type="text"
-            name="pinCode"
-            placeholder="Pin Code(Required*)"
-            value={address.pinCode}
-            onChange={setAddressFields}
-            className="input-section"
-            required
-          />
-          <input
-            type="text"
-            name="city"
-            placeholder="City"
-            value={address.city}
-            onChange={setAddressFields}
-            className="input-section"
-          />
-        </div> */}
-        
-        {/* <div className="row">
-          <input
-            type="text"
-            name="houseNo"
-            placeholder="House No(Required*)"
-            value={address.houseNo}
-            onChange={setAddressFields}
-            className="input-section"
-            required
-          />
-          <select
-            name="state"
-            id="state"
-            onChange={setAddressFields}
-            className="input-section"
-            required
-          >
-            {states.map((state, index) => {
-              if (index === 0)
-                return (
-                  <option value="" disabled selected>
-                    {state}
-                  </option>
-                );
-              else
-                return (
-                  <option value={state} key={state}>
-                    {state}
-                  </option>
-                );
-            })}
-          </select>
-          <input
-            type="text"
-            name="detailAddress"
-            placeholder="Colony, street no"
-            value={address.detailAddress}
-            onChange={setAddressFields}
-            className="input-section"
-            required
-          />
-        </div> */}
         <button className="bttn bttn-primary" type="submit" value="Submit">
           Save Address
         </button>

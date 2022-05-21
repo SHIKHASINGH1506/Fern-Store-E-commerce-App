@@ -6,7 +6,7 @@ const useToast = () => {
       toast[toastTheme](toastMsg, {
         position: toast.POSITION.TOP_RIGHT,
         position: "top-right",
-        autoClose: 3000,
+        autoClose: 1500,
         hideProgressBar: true,
         closeOnClick: true,
         pauseOnHover: true,

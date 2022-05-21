@@ -1,4 +1,4 @@
-import {addProductToCart, updateCartItem, deleteCartItem} from "./cartService";
+import {addProductToCart, updateCartItem, deleteCartItem, clearCart} from "./cartService";
 import {addProductToWishlist, deleteProductFromWishlist} from "./wishlistService";
 import {loginUser, signupUser} from "./authService";
 import { getProductData } from "./productService";
@@ -11,6 +11,7 @@ export {
     deleteProductFromWishlist,
     loginUser,
     signupUser,
-    getProductData
+    getProductData,
+    clearCart
 };
 export {getAllAddress, addAddress, updateAddress, deleteAddress} from "./addressService";

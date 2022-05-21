@@ -2,7 +2,7 @@ import './sidebarFilter.css';
 import {useProduct} from "contexts/index";
 
 const SidebarFilter = () => {
-    const { state: {categories, priceRange, products}, dispatch }  = useProduct();
+    const { state: {categories, priceRange, products, starRating}, dispatch }  = useProduct();
     const stars = [4,3,2];
 
     const changeHandler = (filterType, filterValue, e) => {
@@ -13,6 +13,7 @@ const SidebarFilter = () => {
             : filterValue;
         dispatch({type : type, payload: payload}); 
     }
+    const isStarRatingChecked = (star) => starRating && starRating === star
     return (
         <div className="product-sidebar mr-6">
             <aside className="side-navbar">
@@ -54,6 +55,7 @@ const SidebarFilter = () => {
                                         type="radio"
                                         id={`rating${star}`}
                                         name='rating'
+                                        checked={isStarRatingChecked(star)}
                                         onChange= {() => changeHandler('STAR_RATING', star)}
                                     />
                                    {`${star} stars & above`}

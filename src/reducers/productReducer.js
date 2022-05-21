@@ -42,7 +42,7 @@ export const productReducer = (state, action) => {
         }
       };
     case 'STAR_RATING':
-      return{
+      return {
         ...state,
         starRating: payload
       };

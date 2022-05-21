@@ -84,7 +84,7 @@ const Navbar = () => {
                                         : navigate('Login')}
                                 >
                                     <i className="fas fa-shopping-bag"></i>
-                                    {totalCartItems > 0 && <span class="btn-badge d-flex justify-center items-center">{totalItem}</span>}
+                                    {totalCartItems > 0 && <span className="btn-badge d-flex justify-center items-center">{totalItem}</span>}
                                 </span>
                             </div>
                         </li>
@@ -96,7 +96,7 @@ const Navbar = () => {
                                         : navigate('Login')}
                                 >
                                     <i className="fas fa-heart"></i>
-                                    {totalWishlistItems > 0 && <span class="btn-badge d-flex justify-center items-center">{wishlist.length}</span>}
+                                    {totalWishlistItems > 0 && <span className="btn-badge d-flex justify-center items-center">{wishlist.length}</span>}
                                 </span>
                             </div>
                         </li>
@@ -112,19 +112,19 @@ const Navbar = () => {
                         <div className={`profile-option ${showProfileModal ? 'show' : ''}`}>
                             <ul>
                                 <li className="profile-item">
-                                    <div className="icon-wrapper"><i class="fas fa-box-open"></i></div>
+                                    <div className="icon-wrapper"><i className="fas fa-box-open"></i></div>
                                     Orders
                                 </li>
                                 <Link to='/address' className="profile-item">
-                                    <div className="icon-wrapper"><i class="fas fa-map-marker-alt"></i></div>
+                                    <div className="icon-wrapper"><i className="fas fa-map-marker-alt"></i></div>
                                     Address
                                 </Link>
                                 <li className="profile-item">
-                                    <div className="icon-wrapper"><i class="fas fa-edit"></i></div>
+                                    <div className="icon-wrapper"><i className="fas fa-edit"></i></div>
                                     Profile Details
                                 </li>
                                 <li className="profile-item" onClick={() => logoutUser()}>
-                                    <i class="fas fa-logout"></i>Sign Out</li>
+                                    <i className="fas fa-logout"></i>Sign Out</li>
                             </ul>
                         </div>
 

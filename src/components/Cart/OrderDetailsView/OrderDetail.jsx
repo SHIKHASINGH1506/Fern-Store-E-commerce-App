@@ -1,8 +1,10 @@
 import { useProduct } from 'contexts/index';
 import { getPriceDetails } from "utils/cart/cart";
+import { useNavigate } from 'react-router-dom';
 
 const OrderDetail = () => {
   const {state: {cart}} = useProduct();
+  const navigate = useNavigate();
   const {totalPrice, priceAfterDiscount, totalDiscount} = getPriceDetails(cart);
   return (
     <aside className="item-price-card">
@@ -27,7 +29,7 @@ const OrderDetail = () => {
           <span>Rs {priceAfterDiscount}</span>
         </div>
       </div>
-      <button className="bttn bttn-primary bttn-order">place order</button>
+      <button className="bttn bttn-primary bttn-order" onClick={() => navigate('/checkout')}>place order</button>
     </aside>
   )
 }
