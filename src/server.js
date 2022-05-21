@@ -8,6 +8,7 @@ import {
   getCartItemsHandler,
   removeItemFromCartHandler,
   updateCartItemHandler,
+  clearCartHandler
 } from "./backend/controllers/CartController";
 import {
   getAllCategoriesHandler,
@@ -22,6 +23,12 @@ import {
   getWishlistItemsHandler,
   removeItemFromWishlistHandler,
 } from "./backend/controllers/WishlistController";
+import {
+  getAddresslistHandler,
+  addAddressToAddresslistHandler,
+  removeAddressFromAddresslistHandler,
+  updateAddressHandler
+} from "./backend/controllers/AddressController";
 import { categories } from "./backend/db/categories";
 import { products } from "./backend/db/products";
 import { users } from "./backend/db/users";
@@ -38,6 +45,7 @@ export function makeServer({ environment = "development" } = {}) {
       user: Model,
       cart: Model,
       wishlist: Model,
+      address: Model
     },
 
     // Runs on the start of the server
@@ -49,7 +57,7 @@ export function makeServer({ environment = "development" } = {}) {
       });
 
       users.forEach((item) =>
-        server.create("user", { ...item, cart: [], wishlist: [] })
+        server.create("user", { ...item, cart: [], wishlist: [], address: [] })
       );
 
       categories.forEach((item) => server.create("category", { ...item }));
@@ -77,6 +85,7 @@ export function makeServer({ environment = "development" } = {}) {
         "/user/cart/:productId",
         removeItemFromCartHandler.bind(this)
       );
+      this.delete("/user/carts/", clearCartHandler.bind(this));
 
       // wishlist routes (private)
       this.get("/user/wishlist", getWishlistItemsHandler.bind(this));
@@ -84,6 +93,15 @@ export function makeServer({ environment = "development" } = {}) {
       this.delete(
         "/user/wishlist/:productId",
         removeItemFromWishlistHandler.bind(this)
+      );
+
+      //address routes (private)
+      this.get("/user/address", getAddresslistHandler.bind(this));
+      this.post("/user/address", addAddressToAddresslistHandler.bind(this));
+      this.post("/user/address/:addressId", updateAddressHandler.bind(this));
+      this.delete(
+        "/user/address/:addressId",
+        removeAddressFromAddresslistHandler.bind(this)
       );
     },
   });

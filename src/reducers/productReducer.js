@@ -1,3 +1,5 @@
+import { getDiscountedPrice } from 'utils/getDiscountedPrice';
+
 export const productReducer = (state, action) => {
   const {type, payload} = action;
   const {categories} = state;
@@ -17,7 +19,10 @@ export const productReducer = (state, action) => {
     case 'INIT_PRODUCTS': {
       return{
         ...state,
-        products: payload
+        products: payload.map(product => ({
+          ...product,
+          discountedPrice: getDiscountedPrice(product.price, product.discountPercentage)
+        }))
       }
     }
     case 'LOW_TO_HIGH':
@@ -37,7 +42,7 @@ export const productReducer = (state, action) => {
         }
       };
     case 'STAR_RATING':
-      return{
+      return {
         ...state,
         starRating: payload
       };
@@ -58,9 +63,7 @@ export const productReducer = (state, action) => {
       }
     case 'LOGOUT':
       return {
-        ...state,
-        cart: [],
-        wishlist: []
+        ...state
       }
     case 'CLEAR': 
       for(const cat in categories)
@@ -73,6 +76,11 @@ export const productReducer = (state, action) => {
         starRating: "",
         products: payload
       }
+    case 'SET_ADDRESS':
+      return {
+        ...state,
+        address: [...action.payload]
+      };
     default:
       return state;
   }

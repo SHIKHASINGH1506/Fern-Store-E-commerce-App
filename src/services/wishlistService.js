@@ -16,7 +16,7 @@ const addProductToWishlist = async (dispatch, data, showToast) => {
     }
   }
   catch(error){
-    console.log(error.message);
+    console.log(error.response.data);
   }
 }
 

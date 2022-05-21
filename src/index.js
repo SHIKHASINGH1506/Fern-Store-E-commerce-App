@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import { makeServer } from "./server";
-import { ProductContextProvider, AuthContextProvider, SliderProvider } from "./contexts/index";
+import { ProductContextProvider, AuthContextProvider, SliderProvider, OrderSummaryProvider } from "./contexts/index";
 
 // Call make Server
 makeServer();
@@ -14,7 +14,9 @@ ReactDOM.render(
       <AuthContextProvider>
         <SliderProvider>
           <ProductContextProvider>
-            <App />
+            <OrderSummaryProvider>
+              <App />
+            </OrderSummaryProvider>
           </ProductContextProvider>
         </SliderProvider>
       </AuthContextProvider>

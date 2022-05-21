@@ -37,6 +37,7 @@ html {
       --dark-secondary-text-color2: #26272c;
       --secondary-color: #eaeaec;
       --dark-secondary-color: #d8d8da;
+      --dark-secondary-color2: #b6b6b6;
   }
   input {
     outline: none;

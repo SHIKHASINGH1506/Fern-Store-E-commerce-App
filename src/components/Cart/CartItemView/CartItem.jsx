@@ -2,14 +2,19 @@ import {
   updateCartItem, 
   deleteCartItem, 
   addProductToWishlist } from 'services';
-import { useProduct } from 'contexts';
-import { useAuth } from 'contexts';
+import { useProduct, useAuth } from 'contexts';
+import { useLocation } from 'react-router-dom';
 import { useToast } from 'custom-hooks/useToast';
 
-const CartItem = () => {
+const CartItem = ({cartItem}) => {
+  const {
+    img, title, categoryName, discountedPrice, price, discountPercentage, qty, _id
+  } = cartItem;
   const {state:{cart, wishlist}, dispatch} = useProduct();
   const {auth: {token}} = useAuth(); 
   const {showToast} = useToast();
+  const location = useLocation();
+  const pageLocation = location.pathname;
 
   const updateCartItemHandler = (id, data) => {
     updateCartItem(dispatch, id, data);
@@ -27,10 +32,7 @@ const CartItem = () => {
   }
 
   return (
-    <div className="cart-item-list">
-      {cart.map(cartItem => {
-        const { img, title, categoryName, discountedPrice, price, discountPercentage, qty, _id } = cartItem;
-        return (
+    // <div className="cart-item-list">
           <div className="card-horizontal cart-item" key={_id}>
             <div className="card-image-container">
               <img
@@ -50,9 +52,9 @@ const CartItem = () => {
                 <div className="card-price">
                   <span className="product-discounted-price">₹ {discountedPrice}</span>
                   <span className="product-original-price mx-2">₹ {price}</span>
-                  <span className="product-discount">({discountPercentage})</span>
+                  <span className="product-discount">({discountPercentage}%)</span>
                 </div>
-                <div className="button-container my-2 items-center">
+                {pageLocation!=='/order-summary' && <div className="button-container my-2 items-center">
                   <button className="bttn text-sm icon-btn" 
                     disabled={qty <=1 ? true : false}
                     onClick={() => qty>1 && updateCartItemHandler(_id, { action: { type: 'decrement' } })}
@@ -65,19 +67,17 @@ const CartItem = () => {
                   >
                     <i className='fas fa-plus'></i>
                   </button>
-                </div>
+                </div>}
               </div>
-              <div className="button-container">
+              {pageLocation!=='/order-summary' && <div className="button-container">
                 <button className="bttn bttn-outline-secondary text-sm"
                   onClick={() => wishlistHandler(cartItem)}>
                   Move to Wishlist
                 </button>
-              </div>
+              </div>}
             </div>
           </div>
-        );
-      })}
-    </div>
+    // </div>
   )
 }
 

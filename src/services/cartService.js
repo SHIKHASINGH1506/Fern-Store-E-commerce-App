@@ -36,4 +36,10 @@ const deleteCartItem = async (dispatch, id) => {
   dispatch({type: 'UPDATE_CART', payload: cart});
 }
 
-export {addProductToCart, updateCartItem, deleteCartItem}
+const clearCart = async () => {
+  const token = JSON.parse(localStorage.getItem("token"));
+  const Headers = {authorization: token};
+  return await axios.delete('/api/user/carts', {headers: Headers});
+}
+
+export {addProductToCart, updateCartItem, deleteCartItem, clearCart}
