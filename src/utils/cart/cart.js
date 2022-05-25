@@ -3,12 +3,13 @@ const isItemInCart = (cart, id) => {
 }
 
 const getPriceDetails = (cart) => {
+  console.log(cart);
   return cart.reduce(
     ({totalPrice, priceAfterDiscount, totalDiscount}, item) => 
     {
       totalPrice = totalPrice+(item.price*item.qty);
       priceAfterDiscount = priceAfterDiscount+(item.discountedPrice*item.qty);
-      totalDiscount = totalDiscount+(item.discount*item.qty); 
+      totalDiscount = totalDiscount+((item.price-item.discountedPrice)*item.qty); 
     return {totalPrice, priceAfterDiscount, totalDiscount};
     },
     {
