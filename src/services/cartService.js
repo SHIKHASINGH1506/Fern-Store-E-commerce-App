@@ -3,7 +3,7 @@ import axios from 'axios';
 const cartBaseUrl = '/api/user/cart';
 
 const addProductToCart = async (dispatch, data, showToast) => {
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = localStorage.getItem("token");
   const Headers = {authorization: token};
   try{
     const {data: {cart}, status} = await axios.post(cartBaseUrl, data, {headers: Headers});
@@ -21,7 +21,7 @@ const addProductToCart = async (dispatch, data, showToast) => {
 }
 
 const updateCartItem = async (dispatch, id, data) => {
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = localStorage.getItem("token");
   const updateCartItemQuantityUrl = '/api/user/cart/';
   const Headers = {authorization: token};
   const {data: {cart}} = await axios.post(updateCartItemQuantityUrl+id, data, {headers: Headers});
@@ -29,7 +29,7 @@ const updateCartItem = async (dispatch, id, data) => {
 }
 
 const deleteCartItem = async (dispatch, id) => {
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = localStorage.getItem("token");
   const deleteCartItemBaseUrl = '/api/user/cart/';
   const Headers = {authorization: token};
   const {data: {cart}} = await axios.delete(deleteCartItemBaseUrl+id, {headers: Headers});
@@ -37,7 +37,7 @@ const deleteCartItem = async (dispatch, id) => {
 }
 
 const clearCart = async () => {
-  const token = JSON.parse(localStorage.getItem("token"));
+  const token = localStorage.getItem("token");
   const Headers = {authorization: token};
   return await axios.delete('/api/user/carts', {headers: Headers});
 }
