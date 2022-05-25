@@ -1,10 +1,11 @@
 import './login.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { useAuth } from "contexts/authContext";
+
+import { useAuth } from "contexts";
 import { loginUser } from "services/authService";
 import { useToast } from "custom-hooks/useToast";
+
 
 const Login = () => {
     const navigate = useNavigate();
@@ -28,10 +29,9 @@ const Login = () => {
     //login handler with actual login credentials
     const loginFormHandler = async (e, loginCreds) => {
         e.preventDefault();
-        try{
+        try {
             const isLogin = await loginUser(loginCreds);
-
-            if(isLogin){
+            if (isLogin) {
                 showToast('Login successful!', 'success');
                 const { encodedToken, foundUser } = isLogin;
                 setAuth(() => ({
@@ -39,7 +39,7 @@ const Login = () => {
                     user: foundUser,
                     isAuth: true
                 }));
-                localStorage.setItem("token", JSON.stringify(encodedToken));
+                localStorage.setItem("token", encodedToken);
                 localStorage.setItem("user", JSON.stringify(foundUser));
                 localStorage.setItem("isAuth", "true");
                 setTimeout(() => {
@@ -47,11 +47,11 @@ const Login = () => {
                     navigate('/');
                 }, 1000)
             }
-            else{
+            else {
                 throw new Error("Failure! Login failed.");
             }
 
-        }catch(error){
+        } catch (error) {
             console.log(error.message);
         }
     }
