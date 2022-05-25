@@ -1,8 +1,5 @@
 import './productListing.css';
 
-import {useEffect} from "react";
-import axios from "axios";
-
 import {useProduct} from 'contexts/index';
 import {SidebarFilter} from 'components/Products/SidebarFilterView/SidebarFilter';
 import {ProductCard} from 'components/Products/ProductCardView/ProductCard';
@@ -22,8 +19,6 @@ const {state : {
         products, 
         starRating
     }, 
-    dispatch,
-    setLoader
 } = useProduct();
 
 const categorisedProducts = getCateogrisedProducts(products, categories);
