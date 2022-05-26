@@ -1,30 +1,27 @@
 import axios from 'axios';
 
-const wishlistBaseUrl='/api/user/wishlist';
+const wishlistBaseUrl = '/api/user/wishlist';
 
-const addProductToWishlist = async (dispatch, data, showToast) => {
-  const token = JSON.parse(localStorage.getItem("token"));
-  const Headers = {authorization: token};
-  try{
-    const {data: {wishlist}, status} = await axios.post(wishlistBaseUrl, data, {headers: Headers});
-    if(status>=200 && status<=300){
-      dispatch({type: 'UPDATE_WISHLIST', payload: wishlist});
-      showToast('Added to your wishlist', 'success');
-    }
-    else{
-      throw new Error("Couldn't add to wishlist");
-    }
+const addProductToWishlist = async (dispatch, data, showToast, setActionLoading) => {
+  const token = localStorage.getItem("token");
+  const Headers = { authorization: token };
+  try {
+    setActionLoading(true);
+    const { data: { wishlist }} = await axios.post(wishlistBaseUrl, data, { headers: Headers });
+    dispatch({ type: 'UPDATE_WISHLIST', payload: wishlist });
+    showToast('Added to your wishlist', 'success');
+    setActionLoading(false);
   }
-  catch(error){
-    console.log(error.response.data);
+  catch (error) {
+    console.log(error.message);
   }
 }
 
-const deleteProductFromWishlist = async (dispatch, id) => {
-  const token = JSON.parse(localStorage.getItem("token"));
-  const Headers = {authorization: token};
-  const {data: {wishlist}} = await axios.delete(`${wishlistBaseUrl}/${id}`, {headers: Headers});
-  dispatch({type: 'UPDATE_WISHLIST', payload: wishlist});
+const deleteProductFromWishlist = async (dispatch, id, setActionLoading) => {
+  const token = localStorage.getItem("token");
+  const Headers = { authorization: token };
+  const { data: { wishlist } } = await axios.delete(`${wishlistBaseUrl}/${id}`, { headers: Headers });
+  dispatch({ type: 'UPDATE_WISHLIST', payload: wishlist });
 }
- 
-export {addProductToWishlist, deleteProductFromWishlist};
+
+export { addProductToWishlist, deleteProductFromWishlist };

@@ -71,7 +71,6 @@ export const addItemToCartHandler = function (schema, request) {
  * */
 
 export const removeItemFromCartHandler = function (schema, request) {
-  console.log(request);
   const userId = requiresAuth.call(this, request);
   try {
     if (!userId) {
@@ -114,7 +113,6 @@ export const clearCartHandler = function (schema, request) {
     let userCart = schema.users.findBy({ _id: userId }).cart;
     userCart = [];
     this.db.users.update({ _id: userId }, { cart: userCart });
-    console.log(userCart);
     return new Response(200, {}, { cart: userCart });
   } catch (error) {
     return new Response(

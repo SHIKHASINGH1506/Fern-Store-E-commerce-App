@@ -2,7 +2,7 @@ import './sidebarFilter.css';
 import {useProduct} from "contexts/index";
 
 const SidebarFilter = () => {
-    const { state: {categories, priceRange, products, starRating}, dispatch }  = useProduct();
+    const { state: {categories, priceRange, products, starRating, sortBy}, dispatch }  = useProduct();
     const stars = [4,3,2];
 
     const changeHandler = (filterType, filterValue, e) => {
@@ -14,6 +14,8 @@ const SidebarFilter = () => {
         dispatch({type : type, payload: payload}); 
     }
     const isStarRatingChecked = (star) => starRating && starRating === star
+    const isSortbyChecked = sortOption => sortBy && sortBy === sortOption ? true : false
+    
     return (
         <div className="product-sidebar mr-6">
             <aside className="side-navbar">
@@ -94,6 +96,7 @@ const SidebarFilter = () => {
                                     type="radio"
                                     id="highToLow"
                                     name="radioBtn"
+                                    checked={isSortbyChecked('lowtoHigh')}
                                     onChange={() => changeHandler('LOW_TO_HIGH')}
                                 />
                                  Low to High
@@ -104,6 +107,7 @@ const SidebarFilter = () => {
                                     type="radio"
                                     id="lowToHigh"
                                     name="radioBtn"
+                                    checked={isSortbyChecked('hightoLow')}
                                     onChange={() => changeHandler('HIGH_TO_LOW')}
                                 />
                                 High to Low

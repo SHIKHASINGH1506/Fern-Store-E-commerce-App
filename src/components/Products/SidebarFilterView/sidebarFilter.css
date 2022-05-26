@@ -1,43 +1,45 @@
 .product-sidebar {
-    overflow-y: auto;
-    height: calc(100vh - 3.93rem);
-    min-width: 14rem;
-  }
-  .side-navbar {
-    display: flex;
-    flex-direction: column;
-    padding-right: 1rem;
-  }
-  .nav-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 0.62rem 0;
-    padding: 1rem 0 0;
-  }
-.link-text-primary{
+  overflow-y: auto;
+  height: calc(100vh - 3.93rem);
+  min-width: 14rem;
+  position: sticky;
+  top: 4.2rem;
+}
+.side-navbar {
+  display: flex;
+  flex-direction: column;
+  padding-right: 1rem;
+}
+.nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0.62rem 0;
+  padding: 1rem 0 0;
+}
+.link-text-primary {
   cursor: pointer;
   text-decoration: none;
 }
-.link-text-primary:hover{
+.link-text-primary:hover {
   text-decoration: underline;
   transition: all 0.3s ease 0s;
 }
-input[type=range]{
+input[type="range"] {
   -webkit-appearance: none;
   background: transparent;
 }
-input[type=range]:focus{
+input[type="range"]:focus {
   outline: none;
 }
-input[type=range]::-ms-track {
+input[type="range"]::-ms-track {
   width: 100%;
   cursor: pointer;
-  background: transparent; 
+  background: transparent;
   border-color: transparent;
   color: transparent;
 }
-input[type=range]::-webkit-slider-thumb {
+input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   height: 15px;
   width: 15px;
@@ -47,7 +49,7 @@ input[type=range]::-webkit-slider-thumb {
   margin-top: -5px;
 }
 /* For firefox */
-input[type=range]::-moz-range-thumb {
+input[type="range"]::-moz-range-thumb {
   height: 15px;
   width: 15px;
   border-radius: 50%;
@@ -55,38 +57,39 @@ input[type=range]::-moz-range-thumb {
   cursor: pointer;
 }
 /* for IE */
-input[type=range]::-ms-thumb {
+input[type="range"]::-ms-thumb {
   height: 15px;
   width: 15px;
   border-radius: 50%;
   background: var(--primary-color);
   cursor: pointer;
 }
-input[type=range]::-webkit-slider-runnable-track {
+input[type="range"]::-webkit-slider-runnable-track {
   width: 100%;
   height: 7px;
   cursor: pointer;
-  background: #d4d7db;;
+  background: #d4d7db;
   border-radius: 0.3rem;
 }
-input[type=range]::-moz-range-track {
+input[type="range"]::-moz-range-track {
   width: 100%;
   height: 7px;
   cursor: pointer;
-  background: #d4d7db;;
+  background: #d4d7db;
   border-radius: 0.3rem;
 }
-input[type=range]::-ms-track {
+input[type="range"]::-ms-track {
   width: 100%;
   height: 7px;
   cursor: pointer;
-  background: #d4d7db;;
+  background: #d4d7db;
   border-radius: 0.3rem;
 }
 
-datalist{
+datalist {
   margin-bottom: 0.5rem;
 }
-input[type=radio], input[type=checkbox]{
+input[type="radio"],
+input[type="checkbox"] {
   accent-color: var(--primary-color);
 }

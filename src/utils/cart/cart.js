@@ -3,7 +3,6 @@ const isItemInCart = (cart, id) => {
 }
 
 const getPriceDetails = (cart) => {
-  console.log(cart);
   return cart.reduce(
     ({totalPrice, priceAfterDiscount, totalDiscount}, item) => 
     {

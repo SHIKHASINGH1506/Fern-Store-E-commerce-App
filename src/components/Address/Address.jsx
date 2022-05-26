@@ -45,10 +45,8 @@ export const Address = () => {
 
     const formHandler = async (e, addressText) => {
         e.preventDefault();
-        console.log(addressText);
         try {
             const { data: { address } } = await addAddress({ address: { id: uuid(), ...addressText } });
-            console.log(address);
             dispatch({
                 type: "SET_ADDRESS",
                 payload: address
