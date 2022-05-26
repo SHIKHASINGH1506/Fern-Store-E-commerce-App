@@ -5,47 +5,19 @@ const AddressForm = ({
   address,
   setAddressFields,
   isEdit,
-  cancelFormHanlder
+  cancelFormHanlder,
+  dummyAddressFormHandler
 }) => {
-    const states = [
-        "Select State",
-        "Andhra Pradesh",
-        "Arunachal Pradesh",
-        "Assam",
-        "Bihar",
-        "Chhattisgarh",
-        "Goa",
-        "Gujarat",
-        "Haryana",
-        "Himachal Pradesh",
-        "Jammu and Kashmir",
-        "Jharkhand",
-        "Karnataka",
-        "Kerala",
-        "Madhya Pradesh",
-        "Maharashtra",
-        "Manipur",
-        "Meghalaya",
-        "Mizoram",
-        "Nagaland",
-        "Odisha",
-        "Punjab",
-        "Rajasthan",
-        "Sikkim",
-        "Tamil Nadu",
-        "Telangana",
-        "Tripura",
-        "Uttarakhand",
-        "Uttar Pradesh",
-        "West Bengal",
-        "Andaman and Nicobar Islands",
-        "Chandigarh",
-        "Dadra and Nagar Haveli",
-        "Daman and Diu",
-        "Delhi",
-        "Lakshadweep",
-        "Puducherry"
-      ];
+  const dummyAddress ={
+    fullName: 'John Doe',
+    mobile: '9032461120',
+    houseNo: '420-B/02',
+    detailAddress: 'Lake view back gate, AR Street, Whitefield',
+    pinCode: '12001',
+    city: 'Bangalore',
+    state: 'Karnataka'
+  }
+
   return (
     <div className="address-table-container">
       <form className="address-form" onSubmit={(e) => formHandler(e, address)}>
@@ -54,7 +26,7 @@ const AddressForm = ({
           <input
             type="text"
             name="fullName"
-            placeholder="Full Name(Required*)"
+            placeholder="Full Name"
             value={address.fullName}
             onChange={setAddressFields}
             className="input-section"
@@ -63,7 +35,7 @@ const AddressForm = ({
           <input
             type="text"
             name="mobile"
-            placeholder="Phone No(Required*)"
+            placeholder="Phone No"
             value={address.mobile}
             onChange={setAddressFields}
             className="input-section"
@@ -72,7 +44,7 @@ const AddressForm = ({
            <input
             type="text"
             name="houseNo"
-            placeholder="House No(Required*)"
+            placeholder="House No"
             value={address.houseNo}
             onChange={setAddressFields}
             className="input-section"
@@ -90,7 +62,7 @@ const AddressForm = ({
            <input
             type="text"
             name="pinCode"
-            placeholder="Pin Code(Required*)"
+            placeholder="Pin Code"
             value={address.pinCode}
             onChange={setAddressFields}
             className="input-section"
@@ -104,29 +76,18 @@ const AddressForm = ({
             onChange={setAddressFields}
             className="input-section"
           />
-          
-          <select
+          <input
+            type="text"
             name="state"
-            id="state"
+            placeholder="State"
+            value={address.state}
             onChange={setAddressFields}
             className="input-section"
-            required
-          >
-            
-            {states.map((state, index) => {
-              if (index === 0)
-                return (
-                  <option value="" defaultValue>Select State</option>
-                );
-              else
-                return (
-                  <option value={state} key={state}>
-                    {state}
-                  </option>
-                );
-            })}
-          </select>
+          />
         </div>
+       {!isEdit && <button className="bttn bttn-primary" onClick={(e) => dummyAddressFormHandler(e, dummyAddress)}>
+          Dummy Address
+        </button>}
         <button className="bttn bttn-primary" type="submit" value="Submit">
           Save Address
         </button>

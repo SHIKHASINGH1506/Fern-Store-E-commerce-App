@@ -57,7 +57,17 @@ export function makeServer({ environment = "development" } = {}) {
       });
 
       users.forEach((item) =>
-        server.create("user", { ...item, cart: [], wishlist: [], address: [] })
+        server.create("user", { ...item, cart: [], wishlist: [], address: [
+          {
+            fullName: 'Guest user',
+            mobile: '8132464120',
+            houseNo: 'House no. K-2/6',
+            detailAddress: 'HSR Layout',
+            pinCode: '12301',
+            city: 'Bangalore',
+            state: 'Karnataka'
+        }
+        ] })
       );
 
       categories.forEach((item) => server.create("category", { ...item }));

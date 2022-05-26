@@ -6,7 +6,7 @@ import {
   useEffect,
   useState
 } from "react";
-
+import { useAuth } from "contexts";
 import { productReducer } from 'reducers/productReducer';
 
 const ProductContext = createContext();
@@ -14,8 +14,9 @@ const useProduct = () => useContext(ProductContext);
 const initialState = {
   sortBy: "",
   categories: {},
-  priceRange: 600,
+  priceRange: 1299,
   starRating: "",
+  searchText: "",
   cart: [],
   wishlist: [],
   products: [],
@@ -24,6 +25,7 @@ const initialState = {
 const ProductContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(productReducer, initialState);
   const [loader, setLoader] = useState(false);
+  const {auth} = useAuth();
 
   useEffect(() => {
     (async () => {
@@ -38,6 +40,7 @@ const ProductContextProvider = ({ children }) => {
       }
     })();
   }, []);
+
   useEffect(() => {
     (async () => {
         try{
@@ -52,6 +55,16 @@ const ProductContextProvider = ({ children }) => {
         console.log(error);
         }
     })();
+  }, []);
+
+  useEffect(() => {
+    let address = auth.user.address;
+    if (auth.token) {
+      dispatch({
+        type: "SET_ADDRESS",
+        payload: address
+      });
+    }
   }, []);
 
   return (

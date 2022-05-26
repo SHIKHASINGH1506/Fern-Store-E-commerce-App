@@ -31,3 +31,15 @@
   color: var(--secondary-text-color);
   text-decoration: line-through;
 }
+.bttn:disabled{
+  cursor: not-allowed;
+}
+.badge-star{
+  background-color: var(--transparent-white);
+  color: #3e4152;
+  border: 1px solid var(--primary-color);
+}
+.star-icon{
+  margin: 0 5px;
+  color: var(--success-text-color);
+}

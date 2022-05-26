@@ -46,6 +46,11 @@ export const productReducer = (state, action) => {
         ...state,
         starRating: payload
       };
+    case 'SEARCH_BY':
+      return{
+        ...state,
+        searchText: payload
+      }
     case 'PRICE':
       return { 
         ...state, 
@@ -72,7 +77,7 @@ export const productReducer = (state, action) => {
         ...state,
         sortBy: "",
         categories: categories,
-        priceRange: 600,
+        priceRange: 1299,
         starRating: "",
         products: payload
       }

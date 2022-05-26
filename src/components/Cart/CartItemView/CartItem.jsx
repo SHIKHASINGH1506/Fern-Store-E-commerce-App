@@ -2,22 +2,23 @@ import {
   updateCartItem, 
   deleteCartItem, 
   addProductToWishlist } from 'services';
-import { useProduct, useAuth } from 'contexts';
+import { useProduct } from 'contexts';
 import { useLocation } from 'react-router-dom';
 import { useToast } from 'custom-hooks/useToast';
+import { useState } from 'react';
 
 const CartItem = ({cartItem}) => {
   const {
     img, title, categoryName, discountedPrice, price, discountPercentage, qty, _id
   } = cartItem;
-  const {state:{cart, wishlist}, dispatch} = useProduct();
-  const {auth: {token}} = useAuth(); 
+  const {state:{wishlist}, dispatch} = useProduct();
   const {showToast} = useToast();
   const location = useLocation();
   const pageLocation = location.pathname;
+  const [isActionLoading, setActionLoading] = useState(false);
 
   const updateCartItemHandler = (id, data) => {
-    updateCartItem(dispatch, id, data);
+    updateCartItem(dispatch, id, data, setActionLoading);
   }
 
   const wishlistHandler = (product) => {
@@ -26,8 +27,7 @@ const CartItem = ({cartItem}) => {
       showToast('Item already present in wishlist', 'warning');
     else{
       deleteCartItem(dispatch, product._id);
-      addProductToWishlist(dispatch, {product: product});
-     
+      addProductToWishlist(dispatch, {product: product}, showToast, setActionLoading);
     }
   }
 
@@ -56,13 +56,15 @@ const CartItem = ({cartItem}) => {
                 </div>
                 {pageLocation!=='/order-summary' && <div className="button-container my-2 items-center">
                   <button className="bttn text-sm icon-btn" 
-                    disabled={qty <=1 ? true : false}
+                    // disabled={qty <=1 ? true : false}
+                    disabled={isActionLoading}
                     onClick={() => qty>1 && updateCartItemHandler(_id, { action: { type: 'decrement' } })}
                   >
                     <i className='fas fa-minus'></i>
                   </button>
                   <div className="">{qty}</div>
                   <button className="bttn text-sm icon-btn"
+                    disabled={isActionLoading}
                     onClick={() => updateCartItemHandler(_id, { action: { type: 'increment' } })}
                   >
                     <i className='fas fa-plus'></i>

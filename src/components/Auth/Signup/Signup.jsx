@@ -39,7 +39,7 @@ const Signup = () => {
           user: createdUser,
           isAuth: true
         });
-        localStorage.setItem("token", JSON.stringify(encodedToken));
+        localStorage.setItem("token", encodedToken);
         localStorage.setItem("user", JSON.stringify(createdUser));
         setTimeout(() => {
           setSignupFields(initialSignupFields);

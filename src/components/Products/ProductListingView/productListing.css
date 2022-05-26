@@ -10,6 +10,7 @@
   .list-item {
     padding: 0 1rem;
     margin: 0.5rem 0rem;
+    cursor: pointer;
   }
   .slider .range{
     position: relative;
@@ -35,10 +36,26 @@
     display: flex;
     width: 100%;
   }
+
   /* media query */
   @media screen and (max-width: 640px) {
-    .product-sidebar {
-      display: none;
+    .mobile-filter{
+      position: sticky;
+      bottom: 0;
+      width: 100%;
+      padding: 5px;
+      border-top: 1px solid var(--dark-secondary-text-color);
+      text-align: center;
+      background-color: var(--transparent-white);
+      transition: all .3s ease-in-out;
+    }
+    .mobile-filter-btn{
+      width: 100%;
+      background:  var(--transparent-white);
+      color: var(--dark-secondary-text-color);
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
     }
     .product-header {
       text-align: center;

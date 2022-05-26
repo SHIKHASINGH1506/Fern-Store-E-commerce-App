@@ -1,18 +1,20 @@
 import '../Navbar/navbar.css';
+import { logo } from "assets/index";
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import { useAuth, useProduct, useSlider } from "contexts/index";
 import { getTotalItemInCart } from "utils/cart/cart";
-import { logo } from "assets/index";
+import { useToast } from 'custom-hooks/useToast';
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { state: { cart, wishlist }, dispatch } = useProduct();
+    const { state: { searchText, cart, wishlist }, dispatch } = useProduct();
     const { totalItem } = getTotalItemInCart(cart);
     const { auth: { token, isAuth }, setAuth } = useAuth();
     const { slider, setSlider } = useSlider();
+    const { showToast } = useToast();
     const [showProfileModal, setProfileModal] = useState();
 
     const logoutUser = () => {
@@ -24,6 +26,8 @@ const Navbar = () => {
             user: {},
             isAuth: false
         });
+        accountModalHandler();
+        showToast('Logged out successfuly', 'success');
         localStorage.clear();
         navigate('/');
     }
@@ -32,6 +36,15 @@ const Navbar = () => {
     }
     let totalWishlistItems = isAuth ? wishlist.length : 0;
     let totalCartItems = isAuth ? cart.length : 0;
+
+    const searchFormHandler = e => {
+        e.preventDefault();
+        navigate('/Products');
+    }
+
+    const accountModalHandler = () => {
+        setProfileModal(false);
+    }
 
     return (
         <header className="navbar-home">
@@ -52,8 +65,6 @@ const Navbar = () => {
                     <div className="logo-wrapper"><img src={logo} className="responsive-img" /></div>
                     <Link className="brand-logo mx-2" to="/">FERN</Link>
 
-
-
                     <ul className="navbar-nav navbar-nav-collapse">
                         <li className="nav-item">
                             <Link to='/' className='nav-item-link'>HOME</Link>
@@ -64,7 +75,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-right-aligned">
-                    <div className="search-bar">
+                    <form className="search-bar" onSubmit={searchFormHandler}>
                         <button className="search-bar__btn" type="submit">
                             <i className="fas fa-search"></i>
                         </button>
@@ -73,8 +84,10 @@ const Navbar = () => {
                             type="text"
                             id="product"
                             placeholder="Search item here"
+                            value={searchText}
+                            onChange={(e) => dispatch({ type: 'SEARCH_BY', payload: e.target.value })}
                         />
-                    </div>
+                    </form>
                     <ul className="navbar-nav navbar-fixed">
                         <li className="nav-item">
                             <div className="nav-icon-link no-link-style">
@@ -111,20 +124,29 @@ const Navbar = () => {
                         </div>
                         <div className={`profile-option ${showProfileModal ? 'show' : ''}`}>
                             <ul>
-                                <li className="profile-item">
-                                    <div className="icon-wrapper"><i className="fas fa-box-open"></i></div>
-                                    Orders
-                                </li>
-                                <Link to='/address' className="profile-item">
+                                <Link to='/address' className="profile-item" onClick={accountModalHandler}>
                                     <div className="icon-wrapper"><i className="fas fa-map-marker-alt"></i></div>
                                     Address
                                 </Link>
-                                <li className="profile-item">
+                                <Link className="profile-item" to='/user-profile' onClick={accountModalHandler}>
                                     <div className="icon-wrapper"><i className="fas fa-edit"></i></div>
                                     Profile Details
-                                </li>
-                                <li className="profile-item" onClick={() => logoutUser()}>
-                                    <i className="fas fa-logout"></i>Sign Out</li>
+                                </Link>
+                                {isAuth
+                                    ? <li className="profile-item" onClick={() => logoutUser()}>
+                                       <i class="fas fa-arrow-right-from-bracket"></i>
+                                        Sign Out
+                                    </li>
+                                    : <Link className="profile-item" to='/Login' onClick={accountModalHandler}>
+                                        <i className="fas fa-logout"></i>
+                                        Login
+                                    </Link>
+
+                                }
+                                {/* <li className="profile-item" onClick={() => logoutUser()}>
+                                    <i className="fas fa-logout"></i>
+                                    Sign Out
+                                </li> */}
                             </ul>
                         </div>
 

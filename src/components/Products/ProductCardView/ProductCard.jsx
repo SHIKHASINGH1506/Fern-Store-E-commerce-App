@@ -1,5 +1,6 @@
 import './productCard.css';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { useProduct } from "contexts/index";
 import { 
     addProductToCart, 
@@ -23,11 +24,12 @@ const ProductCard = ({product}) => {
         discountPercentage
     } = product;
     const navigate = useNavigate();
+    const location = useLocation();
     const{state: {cart, wishlist}, dispatch} = useProduct(); 
     const {auth: {token}} = useAuth(); 
     const {showToast} = useToast();
+    const [actionLoading, setActionLoading] = useState(false);
 
-    
     const isProductInCart = isItemInCart(cart, _id);
     const isProductInWishlist = isItemnWishlist(wishlist, _id);
 
@@ -36,8 +38,8 @@ const ProductCard = ({product}) => {
         token 
             ? isProductInCart
                 ? navigate('/Cart') 
-                : addProductToCart(dispatch, {product: product}, showToast)
-            : navigate('/Login');
+                : addProductToCart(dispatch, {product: product}, showToast, setActionLoading)
+            : navigate('/Login', {state:{from: location.pathname}});
     }
 
     const addToWishlistHandler = (e, product) => {
@@ -45,8 +47,8 @@ const ProductCard = ({product}) => {
         token 
             ? isProductInWishlist
                 ? deleteProductFromWishlist(dispatch, _id) 
-                : addProductToWishlist(dispatch, {product: product}, showToast)
-            : navigate('/Login');
+                : addProductToWishlist(dispatch, {product: product}, showToast, setActionLoading)
+            : navigate('/Login', {state:{from: location.pathname}});
     }
 
     return (
@@ -58,18 +60,19 @@ const ProductCard = ({product}) => {
                     alt={title}
                 />
                 <div className="card-badge-container">
-                    <span className="badge bg-primary">
-                        {rating}<i className="fas fa-star"></i>
-                    </span>
+                    <div className="badge badge-star">
+                        {rating}<i className="fas fa-star star-icon"></i>
+                    </div>
                 </div>
                 <button 
                     className={`bttn bttn-outline-secondary bttn-float-icon ${isProductInWishlist ? 'wishlist-icon' : ''}`}
+                    disabled={actionLoading}
                     onClick={(e) => addToWishlistHandler(e, product)}>
                     <i className="fas fa-heart"></i>
                 </button>
             </div>
             <div className="card-content-container">
-                <div className="card-title">{title}</div>
+                <div className="card-title" onClick={() => navigate(`/Products/${_id}`)}>{title}</div>
                 <div className="card-text"> {productType} </div>
                 <div className="card-price">
                     <span className="product-discounted-price">
@@ -78,7 +81,10 @@ const ProductCard = ({product}) => {
                     <span className="product-price mx-2">Rs. {price}</span>
                     <span className="product-discount">({discountPercentage}%)</span>
                 </div>
-                <button className="bttn bttn-primary" onClick={() => addToCartHandler(product)}>
+                <button 
+                    className="bttn bttn-primary" 
+                    disabled={actionLoading}
+                    onClick={() => addToCartHandler(product)}>
                     <span className="bttn-icon">
                         <i className="fas fa-shopping-bag"></i>
                     </span>

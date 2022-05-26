@@ -1,8 +1,8 @@
 import './sidebarFilter.css';
 import {useProduct} from "contexts/index";
 
-const SidebarFilter = () => {
-    const { state: {categories, priceRange, products, starRating}, dispatch }  = useProduct();
+const SidebarFilter = ({mobileFilterState, setFilterState}) => {
+    const { state: {categories, priceRange, products, starRating, sortBy}, dispatch }  = useProduct();
     const stars = [4,3,2];
 
     const changeHandler = (filterType, filterValue, e) => {
@@ -14,13 +14,18 @@ const SidebarFilter = () => {
         dispatch({type : type, payload: payload}); 
     }
     const isStarRatingChecked = (star) => starRating && starRating === star
+    const isSortbyChecked = sortOption => sortBy && sortBy === sortOption ? true : false
+    
     return (
-        <div className="product-sidebar mr-6">
+        <div className={`product-sidebar mr-6 ${mobileFilterState ? 'active' : ''}`}>
             <aside className="side-navbar">
                 <header className="nav-header">
                     <div className="px-4 bold">Filters</div>
                     <p className="link-text-primary px-6"
                     onClick = {() => changeHandler("CLEAR", products)}>Clear</p>
+                    <button 
+                        className='fas fa-times filter-close-btn' 
+                        onClick={() => setFilterState(false)}></button>
                 </header>
                 <div className="side-navbar">
                     <div className="price-filter">
@@ -94,6 +99,7 @@ const SidebarFilter = () => {
                                     type="radio"
                                     id="highToLow"
                                     name="radioBtn"
+                                    checked={isSortbyChecked('lowtoHigh')}
                                     onChange={() => changeHandler('LOW_TO_HIGH')}
                                 />
                                  Low to High
@@ -104,6 +110,7 @@ const SidebarFilter = () => {
                                     type="radio"
                                     id="lowToHigh"
                                     name="radioBtn"
+                                    checked={isSortbyChecked('hightoLow')}
                                     onChange={() => changeHandler('HIGH_TO_LOW')}
                                 />
                                 High to Low

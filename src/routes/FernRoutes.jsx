@@ -10,7 +10,8 @@ import {
   SingleProduct,
   Address,
   Checkout,
-  OrderSummary
+  OrderSummary,
+  UserProfile
 } from "components";
 
 const FernRoutes = () => {
@@ -29,6 +30,7 @@ const FernRoutes = () => {
                 <Route path='/address' element={<Address/>}></Route>
                 <Route path='/checkout' element={<Checkout/>}></Route>
                 <Route path='/order-summary' element={<OrderSummary/>}></Route>
+                <Route path='/user-profile' element={<UserProfile/>}></Route>
             </Route>
         </Routes>               
     );

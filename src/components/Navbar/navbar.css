@@ -79,7 +79,8 @@
   .search-bar {
     display: flex;
     align-items: center;
-    flex-grow: 1;
+    max-width: 350px;
+    width: 100%;
     position: relative;
     background-color: #f7f7fd;
     margin: 0 0.45rem;

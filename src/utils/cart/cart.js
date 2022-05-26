@@ -1,5 +1,5 @@
 const isItemInCart = (cart, id) => {
-  return cart.find(cartInItem => cartInItem._id === id);
+  return cart.find(cartItem => cartItem._id === id);
 }
 
 const getPriceDetails = (cart) => {
@@ -8,7 +8,7 @@ const getPriceDetails = (cart) => {
     {
       totalPrice = totalPrice+(item.price*item.qty);
       priceAfterDiscount = priceAfterDiscount+(item.discountedPrice*item.qty);
-      totalDiscount = totalDiscount+(item.discount*item.qty); 
+      totalDiscount = totalDiscount+((item.price-item.discountedPrice)*item.qty); 
     return {totalPrice, priceAfterDiscount, totalDiscount};
     },
     {

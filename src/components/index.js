@@ -11,3 +11,4 @@ export {SingleProduct} from "./Products/SingleProductView/SingleProduct";
 export {Address} from "./Address/Address";
 export {Checkout} from './Checkout/Checkout';
 export {OrderSummary} from './OrderSummary/OrderSummary';
+export {UserProfile} from './UserProfile/UserProfile';

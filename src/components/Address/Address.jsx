@@ -2,9 +2,11 @@ import './address.css';
 import { useState } from "react";
 import { v4 as uuid } from "uuid";
 import { useProduct } from 'contexts';
+import { useToast } from 'custom-hooks/useToast';
 import { AddressForm } from './AddressForm';
 import { Addresslist } from './Addresslist';
-import { getAllAddress, addAddress, deleteAddress } from 'services';
+import { addAddress } from 'services';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export const Address = () => {
     const formField = {
@@ -17,10 +19,16 @@ export const Address = () => {
         state: "",
         isEdit: false
     };
-    const { dispatch, state: { address } } = useProduct();
+    const { dispatch, state: { address }, setLoader } = useProduct();
     const [addressFields, setAddress] = useState(formField);
+    const {showToast} = useToast();
     const [newAddress, setNewAddress] = useState(false);
     const [isEditable, setIsEditable] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location?.state?.from || '';
+    const isAddNewAddressFromCheckout = location?.state?.isAddnewAddress;
 
     const setAddressFields = (e) => {
         const { value, name } = e.target;
@@ -35,19 +43,37 @@ export const Address = () => {
         setAddress(formField);
     };
 
-    const formHandler = async e => {
+    const formHandler = async (e, addressText) => {
         e.preventDefault();
         try {
-            const { data: { address } } = await addAddress({ address: { id: uuid(), ...addressFields } });
+            const { data: { address } } = await addAddress({ address: { id: uuid(), ...addressText } });
             dispatch({
                 type: "SET_ADDRESS",
                 payload: address
             });
             setNewAddress(false);
             setAddress(formField);
+            
+            if(from==='/checkout' && isAddNewAddressFromCheckout){
+                showToast('Address added successfully, redirected to checkout', 'success');
+                setLoader(true);
+                setTimeout(() => {
+                    navigate(from, {replace: true});
+                    setLoader(false);
+                }, 1400);
+            }
+            else{
+                showToast('Address added succesfully', 'success');
+            }
         } catch (err) {
-            console.log(err.response.data);
+            console.log(err.message);
         }
+    }
+
+    const dummyAddressFormHandler = async (e, dummyAddress) => {
+        e.preventDefault();
+        setAddress(dummyAddress);
+        formHandler(e, dummyAddress);
     }
 
     const openEditFormHandler = () => {
@@ -70,6 +96,7 @@ export const Address = () => {
                         address={addressFields}
                         isEdit={false}
                         cancelFormHanlder={cancelFormHanlder}
+                        dummyAddressFormHandler={dummyAddressFormHandler}
                     />
                 )}
                 <div className='addresslist-wrapper d-flex justify-center'>

@@ -22,7 +22,6 @@ export const SingleProduct = () => {
       setProduct(product || {});
     })();
   }, []);
-  console.log(productData);
   const navigate = useNavigate();
   const {
     categoryName,
