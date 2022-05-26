@@ -4,7 +4,6 @@ import {useProduct} from "contexts/index";
 const SidebarFilter = ({mobileFilterState, setFilterState}) => {
     const { state: {categories, priceRange, products, starRating, sortBy}, dispatch }  = useProduct();
     const stars = [4,3,2];
-    console.log(mobileFilterState);
 
     const changeHandler = (filterType, filterValue, e) => {
         const type = filterType; 

@@ -25,6 +25,7 @@ export const products = [
     discount: 49,
     discountPercentage: 20,
     categoryName: "Indoor",
+    productDescription: "Betel leaf has shiny heart-shaped leaves with small white flower spikes. It prefers a rich, well-drained soil with partial shade"
   },
   {
     _id: uuid(),
@@ -36,6 +37,7 @@ export const products = [
     discount: 29,
     discountPercentage: 10,
     categoryName: "Indoor",
+    productDescription: 'As for its leaves, Calathea Freddie boast of a shiny, elongated, and light green color with zebra stripes and borders in darker shades of green.'
   },
   {
     _id: uuid(),
@@ -58,6 +60,7 @@ export const products = [
     discount: 99,
     discountPercentage: 7,
     categoryName: "Air Purifier",
+    productDescription: "The ZZ plant is an easy to grow and care for air purifier plant that displays small glossy leaves on stems which can grow up to 3 ft long indoors."
   },
   {
     _id: uuid(),
@@ -69,6 +72,7 @@ export const products = [
     discount: 29,
     discountPercentage: 10,
     categoryName: "Air Purifier",
+    productDescription: "Epipremnum aureum is the scientific name of this plant. The species is a popular houseplant in temperate regions. The plant has a multiple common names including golden pothos, money plant, silver vine."
   }, 
   
   {
@@ -81,6 +85,7 @@ export const products = [
     discount: 19,
     discountPercentage: 4,
     categoryName: "Air Purifier",
+    productDescription: "The broad and shiny green leaves of a Rubber Plant are a head turner. The Rubber Plant looks stunning when used as a centre piece on your living room table, on a windowsill or on a shelf for home decor"
   },
   {
     _id: uuid(),
@@ -92,6 +97,7 @@ export const products = [
     discount: 99,
     discountPercentage: 20,
     categoryName: "Low Maintenance",
+    productDescription: "The fiddle-leaf fig (Ficus lyrata) is a popular indoor famous for it's very large, dark green heavily veined and glossy leaves that grow upright on a sleek trunk. The leaves resemble the shape of a violin (fiddle)."
   },
   {
     _id: uuid(),
@@ -103,6 +109,7 @@ export const products = [
     discount: 19,
     discountPercentage: 12,
     categoryName: "Low Maintenance",
+    productDescription: "If you are planning to add this wonderful, multitasking succulent to your indoor jungle, we suggest teaming it up with the. The erect, dense, and fleshy leaves of the Aloe Blizzard can enhance home decor of your living room, balcony, shelf or your centre table. The Aloe Vera is also a great bedroom plant!"
   },
   {
     _id: uuid(),
@@ -114,6 +121,7 @@ export const products = [
     discount: 49,
     discountPercentage: 20,
     categoryName: "Low Maintenance",
+    productDescription: 'EASY TO GROW: Snake plants are one of the simplest plants to grow in an indoor setting. The snake plant tolerates any light level or inconsistent watering - it practically thrives on neglect! Freshen up your space by planting this sansevieria plant live indoors. Comes in a 6" pot.'
   },
   {
     _id: uuid(),
@@ -125,6 +133,7 @@ export const products = [
     discount: 50,
     discountPercentage: 22,
     categoryName: "Low Maintenance",
+    productDescription: "Crassula green mini or Jade Plant is easy to care for and can survive extended periods of neglect making it a perfect plant for home decor."
   },
   {
     _id: uuid(),
@@ -136,6 +145,7 @@ export const products = [
     discount: 20,
     discountPercentage: 20,
     categoryName: "Indoor",
+    productDescription: "Chinese money plant requires bright light, with no direct sunlight,Scientific name of Pilea peperomioides."
   },
   {
     _id: uuid(),
@@ -147,6 +157,7 @@ export const products = [
     discount: 20,
     discountPercentage: 18,
     categoryName: "Indoor",
+    productDescription: "Air Purifier, Low Maintenance and easy to grow plant. These are one of the most attractive, durable and tolerant houseplants."
   },
   
 ];

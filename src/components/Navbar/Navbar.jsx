@@ -1,11 +1,12 @@
 import '../Navbar/navbar.css';
+import { logo } from "assets/index";
 
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
 import { useAuth, useProduct, useSlider } from "contexts/index";
 import { getTotalItemInCart } from "utils/cart/cart";
-import { logo } from "assets/index";
+import { useToast } from 'custom-hooks/useToast';
 
 const Navbar = () => {
     const navigate = useNavigate();
@@ -13,6 +14,7 @@ const Navbar = () => {
     const { totalItem } = getTotalItemInCart(cart);
     const { auth: { token, isAuth }, setAuth } = useAuth();
     const { slider, setSlider } = useSlider();
+    const { showToast } = useToast();
     const [showProfileModal, setProfileModal] = useState();
 
     const logoutUser = () => {
@@ -24,6 +26,8 @@ const Navbar = () => {
             user: {},
             isAuth: false
         });
+        accountModalHandler();
+        showToast('Logged out successfuly', 'success');
         localStorage.clear();
         navigate('/');
     }
@@ -33,9 +37,13 @@ const Navbar = () => {
     let totalWishlistItems = isAuth ? wishlist.length : 0;
     let totalCartItems = isAuth ? cart.length : 0;
 
-    const searchFormHandler = e =>{
+    const searchFormHandler = e => {
         e.preventDefault();
         navigate('/Products');
+    }
+
+    const accountModalHandler = () => {
+        setProfileModal(false);
     }
 
     return (
@@ -77,7 +85,7 @@ const Navbar = () => {
                             id="product"
                             placeholder="Search item here"
                             value={searchText}
-                            onChange={(e) => dispatch({type: 'SEARCH_BY', payload: e.target.value})}
+                            onChange={(e) => dispatch({ type: 'SEARCH_BY', payload: e.target.value })}
                         />
                     </form>
                     <ul className="navbar-nav navbar-fixed">
@@ -116,20 +124,29 @@ const Navbar = () => {
                         </div>
                         <div className={`profile-option ${showProfileModal ? 'show' : ''}`}>
                             <ul>
-                                <li className="profile-item">
-                                    <div className="icon-wrapper"><i className="fas fa-box-open"></i></div>
-                                    Orders
-                                </li>
-                                <Link to='/address' className="profile-item">
+                                <Link to='/address' className="profile-item" onClick={accountModalHandler}>
                                     <div className="icon-wrapper"><i className="fas fa-map-marker-alt"></i></div>
                                     Address
                                 </Link>
-                                <li className="profile-item">
+                                <Link className="profile-item" to='/user-profile' onClick={accountModalHandler}>
                                     <div className="icon-wrapper"><i className="fas fa-edit"></i></div>
                                     Profile Details
-                                </li>
-                                <li className="profile-item" onClick={() => logoutUser()}>
-                                    <i className="fas fa-logout"></i>Sign Out</li>
+                                </Link>
+                                {isAuth
+                                    ? <li className="profile-item" onClick={() => logoutUser()}>
+                                       <i class="fas fa-arrow-right-from-bracket"></i>
+                                        Sign Out
+                                    </li>
+                                    : <Link className="profile-item" to='/Login' onClick={accountModalHandler}>
+                                        <i className="fas fa-logout"></i>
+                                        Login
+                                    </Link>
+
+                                }
+                                {/* <li className="profile-item" onClick={() => logoutUser()}>
+                                    <i className="fas fa-logout"></i>
+                                    Sign Out
+                                </li> */}
                             </ul>
                         </div>
 

@@ -22,7 +22,7 @@ const Checkout  = () => {
                 <div className="address-option">
                 {address.map(address => <div key={address._id} className='address-item'>
                     <label htmlFor="address" className='semi-bold d-flex items-center'>
-                        <input className='radio-input' type="radio" name="address" id="" value={address} 
+                        <input className='radio-input' type="radio" name="address" id="address" value={address} 
                             onChange={e => setCheckoutAddress(address)}/>
                         {address.fullName}
                     </label>

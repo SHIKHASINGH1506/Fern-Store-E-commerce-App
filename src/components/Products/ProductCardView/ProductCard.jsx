@@ -1,5 +1,5 @@
 import './productCard.css';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useProduct } from "contexts/index";
 import { 
@@ -24,12 +24,12 @@ const ProductCard = ({product}) => {
         discountPercentage
     } = product;
     const navigate = useNavigate();
+    const location = useLocation();
     const{state: {cart, wishlist}, dispatch} = useProduct(); 
     const {auth: {token}} = useAuth(); 
     const {showToast} = useToast();
     const [actionLoading, setActionLoading] = useState(false);
 
-    
     const isProductInCart = isItemInCart(cart, _id);
     const isProductInWishlist = isItemnWishlist(wishlist, _id);
 
@@ -39,7 +39,7 @@ const ProductCard = ({product}) => {
             ? isProductInCart
                 ? navigate('/Cart') 
                 : addProductToCart(dispatch, {product: product}, showToast, setActionLoading)
-            : navigate('/Login');
+            : navigate('/Login', {state:{from: location.pathname}});
     }
 
     const addToWishlistHandler = (e, product) => {
@@ -48,7 +48,7 @@ const ProductCard = ({product}) => {
             ? isProductInWishlist
                 ? deleteProductFromWishlist(dispatch, _id) 
                 : addProductToWishlist(dispatch, {product: product}, showToast, setActionLoading)
-            : navigate('/Login');
+            : navigate('/Login', {state:{from: location.pathname}});
     }
 
     return (
@@ -72,7 +72,7 @@ const ProductCard = ({product}) => {
                 </button>
             </div>
             <div className="card-content-container">
-                <div className="card-title">{title}</div>
+                <div className="card-title" onClick={() => navigate(`/Products/${_id}`)}>{title}</div>
                 <div className="card-text"> {productType} </div>
                 <div className="card-price">
                     <span className="product-discounted-price">

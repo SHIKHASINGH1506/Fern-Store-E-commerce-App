@@ -1,5 +1,5 @@
 import './login.css';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { useState } from "react";
 
 import { useAuth } from "contexts";
@@ -9,6 +9,8 @@ import { useToast } from "custom-hooks/useToast";
 
 const Login = () => {
     const navigate = useNavigate();
+    const location = useLocation();
+    const from = location?.state?.from;
     const initalLoginCreds = {
         email: '',
         password: ''
@@ -44,7 +46,7 @@ const Login = () => {
                 localStorage.setItem("isAuth", "true");
                 setTimeout(() => {
                     setLoginCreds(initalLoginCreds);
-                    navigate('/');
+                    navigate(from, {replace: true});
                 }, 1000)
             }
             else {
