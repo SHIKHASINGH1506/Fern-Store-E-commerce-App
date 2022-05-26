@@ -9,7 +9,7 @@ import { logo } from "assets/index";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { state: { cart, wishlist }, dispatch } = useProduct();
+    const { state: { searchText, cart, wishlist }, dispatch } = useProduct();
     const { totalItem } = getTotalItemInCart(cart);
     const { auth: { token, isAuth }, setAuth } = useAuth();
     const { slider, setSlider } = useSlider();
@@ -33,6 +33,11 @@ const Navbar = () => {
     let totalWishlistItems = isAuth ? wishlist.length : 0;
     let totalCartItems = isAuth ? cart.length : 0;
 
+    const searchFormHandler = e =>{
+        e.preventDefault();
+        navigate('/Products');
+    }
+
     return (
         <header className="navbar-home">
             <nav className="navbar-wrapper">
@@ -52,8 +57,6 @@ const Navbar = () => {
                     <div className="logo-wrapper"><img src={logo} className="responsive-img" /></div>
                     <Link className="brand-logo mx-2" to="/">FERN</Link>
 
-
-
                     <ul className="navbar-nav navbar-nav-collapse">
                         <li className="nav-item">
                             <Link to='/' className='nav-item-link'>HOME</Link>
@@ -64,7 +67,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-right-aligned">
-                    <div className="search-bar">
+                    <form className="search-bar" onSubmit={searchFormHandler}>
                         <button className="search-bar__btn" type="submit">
                             <i className="fas fa-search"></i>
                         </button>
@@ -73,8 +76,10 @@ const Navbar = () => {
                             type="text"
                             id="product"
                             placeholder="Search item here"
+                            value={searchText}
+                            onChange={(e) => dispatch({type: 'SEARCH_BY', payload: e.target.value})}
                         />
-                    </div>
+                    </form>
                     <ul className="navbar-nav navbar-fixed">
                         <li className="nav-item">
                             <div className="nav-icon-link no-link-style">

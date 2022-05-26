@@ -76,7 +76,7 @@ export const products = [
     title: "Rubber Plant",
     productType: "Air Purifier",
     rating: 4,
-    price: 699,
+    price: 840,
     img: RubberPlant,
     discount: 19,
     discountPercentage: 4,

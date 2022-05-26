@@ -93,3 +93,33 @@ input[type="radio"],
 input[type="checkbox"] {
   accent-color: var(--primary-color);
 }
+.filter-close-btn{
+  padding: 0 1rem;
+  background: var(--transparent-white);
+  font-size: 1.4rem;
+  border: none;
+  color: #3e4152;
+  cursor: ponter;
+  cursor: pointer;
+  display: none;
+}
+@media screen and (max-width: 640px) {
+  .product-sidebar {
+    position: fixed;
+    z-index: 2;
+    background-color: var(--transparent-white);
+    top: 3rem;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 100vh;
+    transform: translateY(100%);
+    transition: all .3s ease-in-out;
+  }
+  .filter-close-btn{
+    display: block;
+  }
+  .active{
+    transform: translateY(0);
+  }
+}

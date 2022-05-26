@@ -14,8 +14,9 @@ const useProduct = () => useContext(ProductContext);
 const initialState = {
   sortBy: "",
   categories: {},
-  priceRange: 600,
+  priceRange: 1299,
   starRating: "",
+  searchText: "",
   cart: [],
   wishlist: [],
   products: [],

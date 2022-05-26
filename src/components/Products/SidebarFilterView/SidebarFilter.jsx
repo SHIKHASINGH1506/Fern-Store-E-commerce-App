@@ -1,9 +1,10 @@
 import './sidebarFilter.css';
 import {useProduct} from "contexts/index";
 
-const SidebarFilter = () => {
+const SidebarFilter = ({mobileFilterState, setFilterState}) => {
     const { state: {categories, priceRange, products, starRating, sortBy}, dispatch }  = useProduct();
     const stars = [4,3,2];
+    console.log(mobileFilterState);
 
     const changeHandler = (filterType, filterValue, e) => {
         const type = filterType; 
@@ -17,12 +18,15 @@ const SidebarFilter = () => {
     const isSortbyChecked = sortOption => sortBy && sortBy === sortOption ? true : false
     
     return (
-        <div className="product-sidebar mr-6">
+        <div className={`product-sidebar mr-6 ${mobileFilterState ? 'active' : ''}`}>
             <aside className="side-navbar">
                 <header className="nav-header">
                     <div className="px-4 bold">Filters</div>
                     <p className="link-text-primary px-6"
                     onClick = {() => changeHandler("CLEAR", products)}>Clear</p>
+                    <button 
+                        className='fas fa-times filter-close-btn' 
+                        onClick={() => setFilterState(false)}></button>
                 </header>
                 <div className="side-navbar">
                     <div className="price-filter">
