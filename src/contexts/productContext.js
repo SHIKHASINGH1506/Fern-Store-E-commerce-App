@@ -65,7 +65,7 @@ const ProductContextProvider = ({ children }) => {
         payload: address
       });
     }
-  }, []);
+  }, [auth.token]);
 
   return (
     <ProductContext.Provider value={{ state, dispatch, loader, setLoader }}>
