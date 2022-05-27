@@ -58,8 +58,8 @@ const ProductContextProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    let address = auth.user.address;
     if (auth.token) {
+      let address = auth.user.address;
       dispatch({
         type: "SET_ADDRESS",
         payload: address

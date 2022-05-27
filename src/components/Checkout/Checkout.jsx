@@ -11,6 +11,8 @@ const Checkout  = () => {
     const navigate = useNavigate();
     const location = useLocation();
 
+    console.log(address);
+
     return (
         <div className="general-wrapper">
         {checkoutMsg!=='' 
