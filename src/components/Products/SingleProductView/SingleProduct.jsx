@@ -1,6 +1,6 @@
 import './single-product.css';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { getProductData } from 'services';
 import { isItemInCart } from "utils/cart/cart";
 import { isItemnWishlist } from "utils/wishlist/wishlist";
@@ -15,6 +15,7 @@ import {
 
 export const SingleProduct = () => {
   const { productId } = useParams();
+  const location = useLocation();
   const [productData, setProduct] = useState({});
   useEffect(() => {
     (async () => {
@@ -28,7 +29,6 @@ export const SingleProduct = () => {
     discount,
     discountPercentage,
     discountedPrice,
-    id,
     img,
     price,
     productType,
@@ -41,22 +41,23 @@ export const SingleProduct = () => {
   const {showToast} = useToast();
 
   const isProductInCart = isItemInCart(cart, _id);
+  const [actionLoading, setActionLoading] = useState(false);
   const isProductInWishlist = isItemnWishlist(wishlist, _id);
 
   const addToCartHandler = (product) => {
     token 
       ? isProductInCart
           ? navigate('/Cart') 
-          : addProductToCart(dispatch, {product: product}, showToast)
-      : navigate('/Login');
+          : addProductToCart(dispatch, {product: product}, showToast, setActionLoading)
+      : navigate('/Login', {state: {from: location.pathname}});
 }
 
 const addToWishlistHandler = (product) => {
     token 
         ? isProductInWishlist
             ? deleteProductFromWishlist(dispatch, _id) 
-            : addProductToWishlist(dispatch, {product: product}, showToast)
-        : navigate('/Login');
+            : addProductToWishlist(dispatch, {product: product}, showToast, setActionLoading)
+        : navigate('/Login', {state: {from: location.pathname}});
 }
   return (
     <div className="single-product-container d-flex justify-between items-center" key={_id}>
@@ -69,11 +70,6 @@ const addToWishlistHandler = (product) => {
           />
         </div>
         <div className="card-horizontal-content-container ">
-          <button className="btn-close py-2" id="close-btn-alert"
-          //onClick={() => deleteCartItem(dispatch, _id)}
-          >
-            <i className="fas fa-times" aria-hidden="true"></i>
-          </button>
           <div className="text-conatiner">
             <div className="card-title">{title}</div>
             <div className="card-text">{categoryName}</div>
@@ -85,6 +81,7 @@ const addToWishlistHandler = (product) => {
           </div>
           <div className="button-container">
             <button className="bttn bttn-primary"
+            disbaled={actionLoading}
             onClick={() => addToCartHandler(productData)}
             >
               <span className="bttn-icon">
@@ -92,8 +89,10 @@ const addToWishlistHandler = (product) => {
               </span>
               {isProductInCart ? "View Cart" : "Add to Cart"} 
             </button>
-            <button className="bttn bttn-outline-secondary text-sm"
-            onClick={() => wishlistHandler(productData)}
+            <button 
+              className="bttn bttn-outline-secondary text-sm"
+              disbaled={actionLoading}
+              onClick={() => addToWishlistHandler(productData)}
             >
               Move to Wishlist
             </button>

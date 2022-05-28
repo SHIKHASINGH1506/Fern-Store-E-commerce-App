@@ -134,7 +134,7 @@ const Navbar = () => {
                                 </Link>
                                 {isAuth
                                     ? <li className="profile-item" onClick={() => logoutUser()}>
-                                       <i class="fas fa-arrow-right-from-bracket"></i>
+                                        <i className="fas fa-arrow-right-from-bracket"></i>
                                         Sign Out
                                     </li>
                                     : <Link className="profile-item" to='/Login' onClick={accountModalHandler}>
@@ -143,40 +143,25 @@ const Navbar = () => {
                                     </Link>
 
                                 }
-                                {/* <li className="profile-item" onClick={() => logoutUser()}>
-                                    <i className="fas fa-logout"></i>
-                                    Sign Out
-                                </li> */}
                             </ul>
                         </div>
-
-                        {/* {!isAuth && <li className="nav-item">
-                            <Link to='/Login' className='nav-item-link'>LOGIN</Link>
-                        </li>}
-                        {isAuth && <li className="nav-item">
-                            <button onClick={() => logoutUser()} className='transparent-btn nav-item-link'>LOGOUT</button>
-                        </li>
-                        } */}
                     </ul>
                 </div>
                 <div className={`sidebar-wrapper ${slider ? 'show' : ''}`} id="sidebar-wrapper">
                     <div className={`sidebar ${slider ? 'view' : ''}`} id="sidebar">
                         <ul className="sidebar-list sidebar-collapse">
-                            <li className="sidebar-item hide">
-                                <Link className="sidebar-item-link profile-icon" to="#"><i className="fas fa-user"></i></Link>
-                            </li>
-                            <li className="sidebar-item">
-                                <Link className="sidebar-item-link" to="/">Home</Link>
-                            </li>
-                            <li className="sidebar-item">
-                                <Link className="sidebar-item-link" to="/Products">Product</Link>
-                            </li>
-                            <li className="sidebar-item hide">
-                                <Link className="sidebar-item-link" to="/Cart">View Cart</Link>
-                            </li>
-                            <li className="sidebar-item hide">
-                                <Link className="sidebar-item-link" to="#">Contact Us</Link>
-                            </li>
+                            <Link className="sidebar-item hide" to='/user-profile' onClick={() => setSlider(false)}>
+                                <i className="profile-icon fas fa-user"></i>
+                            </Link>
+                            <Link className="sidebar-item" to='/' onClick={() => setSlider(false)}>
+                                Home
+                            </Link>
+                            <Link className="sidebar-item" to='/Products' onClick={() => setSlider(false)}>
+                                Product
+                            </Link>
+                            <Link className="sidebar-item hide" to="/Cart" onClick={() => setSlider(false)}>
+                                View Cart
+                            </Link>
                         </ul>
                     </div>
                 </div>

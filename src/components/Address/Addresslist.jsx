@@ -34,15 +34,6 @@ const Addresslist = ({
       type: "SET_ADDRESS",
       payload: newAddresslist
     });
-    
-    // setAddressList(
-    //   addressList.map((a) => {
-    //     if (a.uuid === uuid) {
-    //       setEditAddressFields({ ...a });
-    //       return { ...a, isEdit: true };
-    //     } else return { ...a, isEdit: false };
-    //   })
-    // );
   };
 
   const saveEditFormHandler = async (e, editedAddress) => {
@@ -53,7 +44,9 @@ const Addresslist = ({
         type: "SET_ADDRESS",
         payload: address
       });
+      showToast('Address update successful', 'success');
     }catch(error){
+      showToast('Address update failed', 'error');
       console.log(error.response.data);
     }
   };

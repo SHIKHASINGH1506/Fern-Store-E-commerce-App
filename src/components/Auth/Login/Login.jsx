@@ -50,6 +50,7 @@ const Login = () => {
                 }, 1000)
             }
             else {
+                showToast('Login failed!', 'error');
                 throw new Error("Failure! Login failed.");
             }
 
@@ -66,10 +67,7 @@ const Login = () => {
     }
 
     return (
-        <div className="login-wrapper">
-            <div className="breadcrumb">
-
-            </div>
+        <div className="login-wrapper d-flex justify-center items-center">
             <div className="login-modal">
                 <form className="login-form" onSubmit={(e) => loginFormHandler(e, loginCreds)}>
                     <h3 className="login-title">Log in</h3>
@@ -78,7 +76,7 @@ const Login = () => {
                         <label className="input-label" htmlFor="userName">Email</label>
                         <input
                             className="input-section"
-                            type="text"
+                            type="email"
                             id="userName"
                             placeholder="Email"
                             name="email"

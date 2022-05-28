@@ -65,7 +65,8 @@ export function makeServer({ environment = "development" } = {}) {
             detailAddress: 'HSR Layout',
             pinCode: '12301',
             city: 'Bangalore',
-            state: 'Karnataka'
+            state: 'Karnataka',
+            id: 'dhjgsaf-12jdafdqw'
         }
         ] })
       );

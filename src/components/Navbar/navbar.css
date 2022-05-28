@@ -150,13 +150,10 @@
     transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.43, 0.96);
   }
   .sidebar-item {
-    padding: 1rem 0;
+    padding: 1rem 0.75rem;
     border-bottom: 1px solid var(--complimentary-text-color);
     text-transform: uppercase;
-  }
-  .sidebar-item-link {
-    text-transform: uppercase;
-    padding: 0rem 0.75rem;
+    display: block;
   }
   .profile-icon {
     font-size: 1.65rem;

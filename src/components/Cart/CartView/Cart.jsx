@@ -11,7 +11,8 @@ const Cart = () => {
   return (
     <div className="general-wrapper">
       <div className="cart-wrapper">
-        <h5 className="cart-header py-4">My Cart {totalItem}</h5>
+        <h5 className="cart-header py-4">My Cart </h5>
+        
         {cart.length === 0 && <h3 className="text-center">Your cart is empty!</h3>}
         <div className="cart-body">
           <div className="cart-item-list">
